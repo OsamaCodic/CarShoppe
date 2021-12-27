@@ -259,7 +259,7 @@
                                         be interested in buying. After you have chosen the vehicle you would like to buy you will need
                                         to record some specific information about your future vehicle.
                                     </p>
-                                    <p class="mb-0">
+                                    <p class="mb-0"> 
                                         CarWeb has helped millions of Pakistanis buy & sell automobiles, read automotive reviews, check automotive prices and find solutions to all of their automotive needs, People can Buy new cars and also used cars here, they can search there Car or bike or other type of vehicle with advanced filters in easy steps ,He can explain and rate his car according to his experience and give feedback and rating, CarWeb provide Auto Parts (E-com) Online Shop, User can order them with free delivery
                                         People need the best and most suitable car according to their price range. CarWeb provides a lot of features that help to find the best car. He can select various types of vehicles to find your best ride in easy steps. 
                                         Aim & Objective is To produce a web-based system that allows customers to register and Buy New or Used cars online.
