@@ -20,6 +20,12 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('sb-admin-2')}}/css/sb-admin-2.min.css" rel="stylesheet">
 
+<style>
+    .LoginCardShadow {
+        box-shadow: 0 1rem 3rem rgb(174, 206, 255)!important;
+    }
+</style>
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -31,7 +37,7 @@
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card o-hidden border-0 LoginCardShadow my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
