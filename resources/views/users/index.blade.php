@@ -13,7 +13,7 @@
                 <h1 class="h3 mb-2 text-gray-800">All Users</h1>
             </div>
             <div class="col-md-2">
-                <a href="{{url('/admins/users/create')}}" type="button" class="btn btn-block btn-primary rounded-pill btn-sm zoomBtn"><i class="fa fa-plus ml-2" aria-hidden="true"></i></a>
+                <a href="{{url('/users/create')}}" type="button" class="btn btn-block btn-primary rounded-pill btn-sm zoomBtn"><i class="fa fa-plus ml-2" aria-hidden="true"></i></a>
             </div>  
         </div>
         
@@ -29,7 +29,8 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>First name</th>
+                                <th>Last name</th>
                                 <th>Email</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>
@@ -39,13 +40,14 @@
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->first_name}}</td>
+                                    <td>{{$user->last_name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->created_at}}</td>
                                     <td>{{$user->updated_at}}</td>
                                     <td>
                                         <i class="fa fa-trash zoom" aria-hidden="true" style="color: #bf1616"></i>
-                                        <i class="fa fa-pencil zoom" aria-hidden="true" style="color: #fbb706"></i>
+                                        <a href="{{ url('users/'.$user->id.'/edit') }}" ><i class="fa fa-pencil zoom" aria-hidden="true" style="color: #fbb706"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

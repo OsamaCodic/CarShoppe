@@ -106,10 +106,10 @@
         padding-left:5px;
     }
 
-    .error{
+    .jqError{
         color: red;
     }
-    label.error.fail-alert {
+    label.jqError.fail-alert {
         font-weight: 500;
         border-radius: 4px;
         line-height: 1;
@@ -119,7 +119,7 @@
         border: 1px solid #4CAF50;
         color: green;
     }
-    input.error.fail-alert {
+    input.jqError.fail-alert {
         border: 1px solid red;
         color: red;
     }

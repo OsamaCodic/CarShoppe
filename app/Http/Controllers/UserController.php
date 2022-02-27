@@ -26,7 +26,22 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.form');
+        $card_title = 'Create user';
+        $card_bg = 'bg-success';
+        $form_action= url('admin/users');
+        $form_method="POST";
+        $form_btn = 'Save';
+        $form_btn_icon = 'fa fa-plus';
+        $form_btn_class = 'btn-success';
+
+        return view('users.create', compact(
+            'card_bg',
+            'card_title',
+            'form_method',
+            'form_btn_class',
+            'form_btn_icon',
+            'form_btn'
+        ));
     }
 
     /**
@@ -37,7 +52,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return "Store";
+        User::create($request->except('_token'));
+
+        return response([
+            'redirect_url' => url('users'),
+        ],200);
     }
 
     /**
@@ -59,7 +78,26 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return "Edit";
+        $card_title = 'Edit user';
+        $card_bg = 'bg-warning';
+        $form_action= url('users/'.$id);
+        $form_method="PUT";
+        $form_btn = 'Update';
+        $form_btn_icon = 'fa fa-redo';
+        $form_btn_class = 'btn-warning';
+
+        $user = user::get()->where('id', $id)->first();
+
+        return view('users.create', compact(
+            'user',
+            'card_bg',
+            'card_title',
+            'form_action',
+            'form_method',
+            'form_btn_class',
+            'form_btn_icon',
+            'form_btn'
+        ));
     }
 
     /**
@@ -71,7 +109,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "Update";
+        $user = user::find($id);
+        $user->update($request->except('_token'));
+        return response([
+            'redirect_url' => url('users'),
+        ],200);
     }
 
     /**

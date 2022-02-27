@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 
     <!-- Custom fonts for this template-->
@@ -17,7 +17,6 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('sb-admin-2')}}/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="{{asset('font-awesome')}}/css/font-awesome.min.css" rel="stylesheet">
-
     @include('layouts.app_css')
     
 </head>
@@ -138,7 +137,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-3 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}  | 
+                            <span class="mr-3 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->first_name  }} | 
                                 <span class="circle"></span> online
                             </span>
                             <img class="img-profile rounded-circle"
@@ -179,7 +178,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; CarShoppe 2022 Admin: <b>{{ Auth::user()->name }}</b></span>
+                        <span>Copyright &copy; CarShoppe 2022 Admin: <b>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</b></span>
                     </div>
                 </div>
             </footer>
@@ -220,9 +219,10 @@
         </div>
     </div>
     <!-- /Logout Modal-->
-
+    
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('sb-admin-2')}}/vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{asset('sb-admin-2')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -235,8 +235,8 @@
     <script src="{{asset('sb-admin-2')}}/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('sb-admin-2')}}/js/demo/chart-area-demo.js"></script>
-    <script src="{{asset('sb-admin-2')}}/js/demo/chart-pie-demo.js"></script>
-
+    {{-- <script src="{{asset('sb-admin-2')}}/js/demo/chart-area-demo.js"></script>
+    <script src="{{asset('sb-admin-2')}}/js/demo/chart-pie-demo.js"></script> --}}
+    @yield('javascript')
 </body>
 </html>
