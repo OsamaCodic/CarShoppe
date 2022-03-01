@@ -28,7 +28,7 @@ class UserController extends Controller
     {
         $card_title = 'Create user';
         $card_bg = 'bg-success';
-        $form_action= url('admin/users');
+        $form_action= url('users');
         $form_method="POST";
         $form_btn = 'Save';
         $form_btn_icon = 'fa fa-plus';
@@ -37,6 +37,7 @@ class UserController extends Controller
         return view('users.create', compact(
             'card_bg',
             'card_title',
+            'form_action',
             'form_method',
             'form_btn_class',
             'form_btn_icon',
