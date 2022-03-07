@@ -28,7 +28,7 @@ class UserController extends Controller
     {
         $card_title = 'Create user';
         $card_bg = 'bg-success';
-        $form_action= url('users');
+        $form_action= url('admins/users');
         $form_method="POST";
         $form_btn = 'Save';
         $form_btn_icon = 'fa fa-plus';
@@ -56,7 +56,7 @@ class UserController extends Controller
         User::create($request->except('_token'));
 
         return response([
-            'redirect_url' => url('users'),
+            'redirect_url' => url('admins/users'),
         ],200);
     }
 
@@ -81,7 +81,7 @@ class UserController extends Controller
     {
         $card_title = 'Edit user';
         $card_bg = 'bg-warning';
-        $form_action= url('users/'.$id);
+        $form_action= url('admins/users/'.$id);
         $form_method="PUT";
         $form_btn = 'Update';
         $form_btn_icon = 'fa fa-redo';
@@ -113,7 +113,7 @@ class UserController extends Controller
         $user = user::find($id);
         $user->update($request->except('_token'));
         return response([
-            'redirect_url' => url('users'),
+            'redirect_url' => url('admins/users'),
         ],200);
     }
 

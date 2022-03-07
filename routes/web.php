@@ -20,4 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('users', UserController::class);
+
+// All backend routes
+    Route::prefix('admins')->group(function () {
+        
+        Route::resource('/users', UserController::class);
+    });
+// All backend routes

@@ -13,7 +13,7 @@
                 <h1 class="h3 mb-2 text-gray-800">All Users</h1>
             </div>
             <div class="col-md-2">
-                <a href="{{url('/users/create')}}" type="button" class="btn btn-block btn-primary rounded-pill btn-sm zoomBtn"><i class="fa fa-plus ml-2" aria-hidden="true"></i></a>
+                <a href="{{url('admins/users/create')}}" type="button" class="btn btn-block btn-primary rounded-pill btn-sm zoomBtn"><i class="fa fa-plus ml-2" aria-hidden="true"></i></a>
             </div>  
         </div>
         
@@ -47,7 +47,7 @@
                                     <td>{{$user->updated_at}}</td>
                                     <td>
                                         <i class="fa fa-trash zoom" aria-hidden="true" style="color: #bf1616"></i>
-                                        <a href="{{ url('users/'.$user->id.'/edit') }}" ><i class="fa fa-pencil zoom" aria-hidden="true" style="color: #fbb706"></i></a>
+                                        <a href="{{ url('admins/users/'.$user->id.'/edit') }}" ><i class="fa fa-pencil zoom" aria-hidden="true" style="color: #fbb706"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
