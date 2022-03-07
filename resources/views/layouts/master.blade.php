@@ -237,6 +237,10 @@
     <!-- Page level custom scripts -->
     {{-- <script src="{{asset('sb-admin-2')}}/js/demo/chart-area-demo.js"></script>
     <script src="{{asset('sb-admin-2')}}/js/demo/chart-pie-demo.js"></script> --}}
+
+    {{-- jQuery SWAL CDN --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
     @yield('javascript')
 </body>
 </html>

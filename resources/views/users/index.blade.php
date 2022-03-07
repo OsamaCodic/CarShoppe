@@ -17,12 +17,10 @@
             </div>  
         </div>
         
-        
         <!-- Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Records</h6>
-
+                <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$users->count()}})</small></h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -46,8 +44,8 @@
                                     <td>{{$user->created_at}}</td>
                                     <td>{{$user->updated_at}}</td>
                                     <td>
-                                        <i class="fa fa-trash zoom" aria-hidden="true" style="color: #bf1616"></i>
-                                        <a href="{{ url('admins/users/'.$user->id.'/edit') }}" ><i class="fa fa-pencil zoom" aria-hidden="true" style="color: #fbb706"></i></a>
+                                        <i class="fa fa-trash zoom" onclick="delete_user({{$user}})" aria-hidden="true" style="color: #bf1616"></i>
+                                        <a href="{{ url('admins/users/'.$user->id.'/edit') }}" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -57,4 +55,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('javascript')
+    @include('users.partials.js')
 @endsection

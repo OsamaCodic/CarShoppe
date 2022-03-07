@@ -53,10 +53,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $hash_password = \Hash::make($request->password);
+	    $request->merge([ 'password' => $hash_password]);
+
         User::create($request->except('_token'));
 
         return response([
             'redirect_url' => url('admins/users'),
+            'status' => 'User Created successfully!'
         ],200);
     }
 
@@ -111,9 +115,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = user::find($id);
+        
+        $hash_password = \Hash::make($request->password);
+	    $request->merge([ 'password' => $hash_password]);
+
         $user->update($request->except('_token'));
         return response([
             'redirect_url' => url('admins/users'),
+            'status' => 'User Updated successfully!'
         ],200);
     }
 
@@ -125,6 +134,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return "Destroy";
+        user::find($id)->delete();
     }
 }
