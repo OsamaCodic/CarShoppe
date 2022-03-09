@@ -128,7 +128,7 @@
         color: green;
     }
 
-    textarea.error.fail-alert {
+    textarea.jqError.fail-alert {
         border: 1px solid red;
         color: red;
     }
@@ -137,10 +137,14 @@
         border: 1px solid #4CAF50;
         color: green;
     }
-    select.error.fail-alert {
+    select.jqError.fail-alert {
         border: 1px solid red;
         color: red;
     }
+
+    /* .swal-overlay {
+        background-color: rgba(154, 206, 255, 0.45);
+    } */
 
     .circle {
         height: 9px;

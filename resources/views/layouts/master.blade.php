@@ -51,23 +51,44 @@
                 Pages
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBrands"
+                    aria-expanded="true" aria-controls="collapseBrands">
+                    <i class="fa fa-tag" aria-hidden="true"></i>
+                    <span>All Brands</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapseBrands" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <h6 class="collapse-header">types:</h6>
+                        <a class="collapse-item" href="#">All</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTypes"
+                    aria-expanded="true" aria-controls="collapseTypes">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                    <span>All Types</span>
+                </a>
+                <div id="collapseTypes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Shapes:</h6>
+                        <a class="collapse-item" href="#">All</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
+                    aria-expanded="true" aria-controls="collapseProducts">
+                    <i class="fa fa-car" aria-hidden="true"></i>
+                    <span>All Products</span>
+                </a>
+                <div id="collapseProducts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Vechicles:</h6>
+                        <a class="collapse-item" href="#">All</a>
                     </div>
                 </div>
             </li>
@@ -81,7 +102,7 @@
                 <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">types:</h6>
-                        <a class="collapse-item" href="{{url('/admins/users')}}">All</a>
+                        <a class="collapse-item" href="{{url('/admin/users')}}">All</a>
                         <a class="collapse-item" href="#">Admins</a>
                         <a class="collapse-item" href="#">Customers</a>
                     </div>

@@ -13,7 +13,7 @@
                 <h1 class="h3 mb-2 text-gray-800">All Users</h1>
             </div>
             <div class="col-md-2">
-                <a href="{{url('admins/users/create')}}" type="button" class="btn btn-block btn-primary rounded-pill btn-sm zoomBtn"><i class="fa fa-plus ml-2" aria-hidden="true"></i></a>
+                <a href="{{url('admin/users/create')}}" type="button" class="btn btn-block btn-primary rounded-pill btn-sm zoomBtn"><i class="fa fa-plus ml-2" aria-hidden="true"></i></a>
             </div>  
         </div>
         
@@ -30,6 +30,7 @@
                                 <th>First name</th>
                                 <th>Last name</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>
                                 <th>Actions</th>
@@ -41,11 +42,12 @@
                                     <td>{{$user->first_name}}</td>
                                     <td>{{$user->last_name}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>{{$user->role}}</td>
                                     <td>{{$user->created_at}}</td>
                                     <td>{{$user->updated_at}}</td>
                                     <td>
                                         <i class="fa fa-trash zoom" onclick="delete_user({{$user}})" aria-hidden="true" style="color: #bf1616"></i>
-                                        <a href="{{ url('admins/users/'.$user->id.'/edit') }}" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706"></i></a>
+                                        <a href="{{ url('admin/users/'.$user->id.'/edit') }}" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -22,7 +22,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // All backend routes
-    Route::prefix('admins')->group(function () {
+    Route::prefix('admin')->group(function () {
         
         Route::resource('/users', UserController::class);
     });

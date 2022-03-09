@@ -27,6 +27,9 @@
                         required: true,
                         email: true,
                     },
+                    role: {
+                        required: true
+                    },
                     password: {
                         required: true,
                         minlength: 4,
@@ -39,6 +42,9 @@
                     },
                     last_name: {
                         required: "Please enter your last name!",
+                    },
+                    role: {
+                        required: "User role must be selected!",
                     }
                 },
 
@@ -70,7 +76,7 @@
     //User delete
         function delete_user(obj)
         {
-            var url = "{{ url('admins/users') }}";
+            var url = "{{ url('admin/users') }}";
             var dltUrl = url+"/"+obj.id;
         
             swal({
