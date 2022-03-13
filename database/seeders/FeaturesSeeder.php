@@ -117,13 +117,6 @@ class FeaturesSeeder extends Seeder
         );
         DB::table('features')->insert(
             array(
-                'title' => 'Rear Camera',
-                'created_at'  => now(),
-                'updated_at'  => now(),
-            ),
-        );
-        DB::table('features')->insert(
-            array(
                 'title' => 'Sensors',
                 'created_at'  => now(),
                 'updated_at'  => now(),

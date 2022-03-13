@@ -85,7 +85,26 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return "Im Edit";
+        $card_title = 'Edit Product';
+        $card_bg = 'bg-warning';
+        $form_action= url('admin/products/'.$id);
+        $form_method="put";
+        $form_btn = 'Update';
+        $form_btn_icon = 'fa fa-redo';
+        $form_btn_class = 'btn-warning';
+
+        $product = Product::get()->where('id', $id)->first();
+
+        return view('products.create', compact(
+            'card_bg',
+            'card_title',
+            'form_action',
+            'form_method',
+            'form_btn_class',
+            'form_btn_icon',
+            'form_btn',
+            'product'
+        ));
     }
 
     /**
@@ -97,7 +116,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "Im Update";
+        $product = Product::find($id);
+        $product->update($request->except('_token'));
+        return response([
+            'redirect_url' => url('admin/products'),
+            'status' => 'Product Updated successfully!'
+        ],200);
     }
 
     /**
@@ -108,7 +132,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return "Im Delete";
+        product::find($id)->delete();
     }
 
     public function product_features($id)

@@ -1,13 +1,13 @@
 <script>
     $(document).ready(function () {
-        
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        // User Create/Update
+        // Product Create/Update
             $("#productForm").validate({
                 errorClass: "jqError fail-alert",
                 validClass: "valid success-alert",
@@ -96,8 +96,46 @@
                     });
                 }
             });
-        // Survey Create/Update
+        // Product Create/Update
     });
+
+    var transmission = $('#transmission').val()
+    if(transmission == "Automatic")
+    {
+        if ($( "#selected_transmission" ).hasClass('col-md-3'))
+        {
+            $( "#selected_transmission" ).removeClass( 'col-md-3');
+        }
+        else
+        {
+            $( "#selected_transmission" ).addClass( 'col-md-6');
+        }
+        $("#select_gears").slideUp('fast')
+    }
+    else if(transmission == "Mannual")
+    { 
+        if ($( "#selected_transmission" ).hasClass('col-md-6'))
+        {
+            $( "#selected_transmission" ).removeClass( 'col-md-6');
+        }
+        else
+        {
+            $( "#selected_transmission" ).addClass( 'col-md-3');
+        }
+        $("#select_gears").slideDown('fast')
+    }
+    else
+    {
+        if ($( "#selected_transmission" ).hasClass('col-md-3'))
+        {
+            $( "#selected_transmission" ).removeClass( 'col-md-3');
+        }
+        else
+        {
+            $( "#selected_transmission" ).addClass( 'col-md-6');
+        }
+        $("#select_gears").slideUp('fast')
+    }
 
     $('#transmission').on('change', function(){
         // Radio toggles will show base on Dropdown Change
@@ -139,15 +177,15 @@
         }
     });
 
-    //User delete
-        function delete_user(obj)
+    //Product delete
+        function delete_product(obj)
         {
-            var url = "{{ url('admin/users') }}";
+            var url = "{{ url('admin/products') }}";
             var dltUrl = url+"/"+obj.id;
         
             swal({
-                    title: "Do you want to delete this User?",
-                    text: obj.first_name + " " + obj.last_name,
+                    title: "Do you want to delete this Product?",
+                    text: obj.name,
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -164,8 +202,8 @@
                     })
                     .done(function(response) {
                         swal({
-                            title: "User deleted!",
-                            text: "User deleted permanently",
+                            title: "Product deleted!",
+                            text: "Product deleted permanently",
                             icon: "success",
                             timer: 5000,
                             buttons: false,
@@ -177,34 +215,35 @@
                     })
                 }
                 else {
-                    swal("Cancelled", "Your User is safe :)", "error");
+                    swal("Cancelled", "Your Product is safe :)", "error");
                 }
             });
         }
-    //User delete
+    //Product delete
 
-    $('#featuresForm').on('submit', function (e) {
-        e.preventDefault();
-        $form = $(this);
-        $.ajax({
-            url : $(this).attr('action'),
-            type: $(this).attr('method'),
-            data: $form.serialize(),
-        })
-        .done(function(response) {
-            swal({
-                text: response.status,
-                timer: 5000,
-                icon:"success",
-                showConfirmButton: false,
-                type: "error"
+    //Product Features Create
+        $('#featuresForm').on('submit', function (e) {
+            e.preventDefault();
+            $form = $(this);
+            $.ajax({
+                url : $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: $form.serialize(),
             })
-            setTimeout(function(){
-                location.href = response.redirect_url;
-            }, 1000);
-        })
-    });
-
+            .done(function(response) {
+                swal({
+                    text: response.status,
+                    timer: 5000,
+                    icon:"success",
+                    showConfirmButton: false,
+                    type: "error"
+                })
+                setTimeout(function(){
+                    location.href = response.redirect_url;
+                }, 1000);
+            })
+        });
+    //Product Features Create
 
 </script>
 

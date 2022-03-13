@@ -70,7 +70,7 @@
                     });
                 }
             });
-        // Survey Create/Update
+        // User Create/Update
     });
 
     //User delete

@@ -42,10 +42,10 @@
                                     <td>{{$product->brand_id}}</td>
                                     <td>{{$product->type_id}}</td>
                                     <td>{{$product->name}}</td>
-                                    {{-- <td>
-                                        <i class="fa fa-trash zoom" onclick="delete_user({{$user}})" aria-hidden="true" style="color: #bf1616"></i>
-                                        <a href="{{ url('admin/users/'.$user->id.'/edit') }}" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706"></i></a>
-                                    </td> --}}
+                                    <td>
+                                        <i class="fa fa-trash zoom" onclick="delete_product({{$product}})" aria-hidden="true" style="color: #bf1616"></i>
+                                        <a href="{{ url('admin/products/'.$product->id.'/edit') }}" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -57,5 +57,5 @@
 @endsection
 
 @section('javascript')
-    @include('users.partials.js')
+    @include('products.partials.js')
 @endsection
