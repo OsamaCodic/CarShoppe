@@ -88,7 +88,9 @@
                 <div id="collapseProducts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Vechicles:</h6>
-                        <a class="collapse-item" href="#">All</a>
+                        <a class="collapse-item" href="{{url('/admin/products')}}">All</a>
+                        <a class="collapse-item" href="#">New</a>
+                        <a class="collapse-item" href="#">Used</a>
                     </div>
                 </div>
             </li>

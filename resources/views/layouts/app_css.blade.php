@@ -21,7 +21,7 @@
     position: absolute;
     cursor: pointer;
     top: 0;
-    left: 2px;
+    left: -5px;
     right: 15px;
     bottom: -3px;
     background-color: #ccc;
@@ -33,8 +33,8 @@
 
         position: absolute;
         content: "";
-        height: 13px;
-        width: 13px;
+        height: 20px;
+        width: 20px;
         left: 2px;
         bottom: 4px;
         background-color: white;
@@ -43,7 +43,7 @@
     }
 
     input:checked + .slider {
-    background-color: #dc3545;
+    background-color: #36b9cc;
     }
 
     input:focus + .slider {
@@ -59,7 +59,7 @@
     /* Rounded sliders */
     .slider.round {
     border-radius: 34px;
-    top: 12px;
+    top: 4px;
     }
 
     .slider.round:before {

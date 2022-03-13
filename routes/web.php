@@ -25,5 +25,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::prefix('admin')->group(function () {
         
         Route::resource('/users', UserController::class);
+        Route::resource('/products', ProductController::class);
+        
+        Route::get('product/{id}/features', 'ProductController@product_features');
+        Route::post('product_features', 'ProductController@store_features');
+
     });
 // All backend routes
