@@ -43,8 +43,9 @@
                                     <td>{{$product->type_id}}</td>
                                     <td>{{$product->name}}</td>
                                     <td>
-                                        <i class="fa fa-trash zoom" onclick="delete_product({{$product}})" aria-hidden="true" style="color: #bf1616"></i>
-                                        <a href="{{ url('admin/products/'.$product->id.'/edit') }}" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706"></i></a>
+                                        <i class="fa fa-trash zoom" onclick="delete_product({{$product}})" aria-hidden="true" style="color: #bf1616" data-toggle="tooltip" data-placement="top" title="Delete"></i>
+                                        <a href="{{ url('admin/products/'.$product->id.'/edit') }}" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
+                                        <a href="{{ url('admin/products/'.$product->id) }}" ><i class="fa fa-eye ml-2 zoom" aria-hidden="true" style="color: #7d9eff" data-toggle="tooltip" data-placement="top" title="Details"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

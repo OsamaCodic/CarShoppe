@@ -74,7 +74,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return "Im Show";
+        $product = Product::get()->where('id', $id)->first();
+        return view('products.product_details', compact('product'));
     }
 
     /**

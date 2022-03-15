@@ -59,7 +59,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
-                <label for="top_speed">Top Speed</label>
+                <label for="top_speed">Top Speed (km/h)</label>
                 <input type="number" class="form-control" id="top_speed" name="top_speed" value="{{@$product->top_speed}}" placeholder="Max speed...">
             </div>
         </div>
@@ -96,7 +96,7 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="weight">Weight</label>
+                <label for="weight">Weight (kg)</label>
                 <input type="number" class="form-control" id="weight" name="weight" value="{{@$product->weight}}" placeholder="Enter weight...">
             </div>
         </div>
@@ -136,14 +136,14 @@
         
         <div class="col-md-3">
             <div class="form-group">
-                <label for="ground_clearance">Ground Clearance</label>
+                <label for="ground_clearance">Ground Clearance (Inches)</label>
                 <input type="number" class="form-control" id="ground_clearance" name="ground_clearance" value="{{@$product->ground_clearance}}" placeholder="Road Clearance...">
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label for="dimensions">Dimension</label>
+                <label for="dimensions">Dimension (ft)</label>
                 <div class="row">
                     <div class="col">
                       <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Length">
