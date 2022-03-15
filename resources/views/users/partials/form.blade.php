@@ -38,6 +38,8 @@
         </div>
     </div>
 
+    <input type="hidden" id="userID" value="{{@$user->id}}">
+
     <button type="submit" class="btn {{$form_btn_class}} rounded-pill themeBtn zoomBtn"  style="">{{$form_btn}} <i class="fa {{$form_btn_icon}} ml-2" aria-hidden="true"></i></button>
     <a href="{{url('admin/users')}}" type="button" class="btn btn-outline-secondary rounded-pill ml-3 themeBtn zoomCancelBtn">Cancel <i class="fa fa-times ml-2" aria-hidden="true"></i></a>
 </form>

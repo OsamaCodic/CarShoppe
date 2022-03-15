@@ -7,12 +7,8 @@
             }
         });
 
-        var url = $('#userForm').attr('action');
-        var userID = 0;
+        var userID = $('#userID').val();
 
-    
-        // userID = url.substring(url.lastIndexOf('/') + 1);
-        
         // User Create/Update
             $("#userForm").validate({
                 errorClass: "jqError fail-alert",
@@ -37,7 +33,10 @@
                         required: true
                     },
                     password: {
-                        required : userID.length == '',
+                        required : userID == '',
+                        minlength: ((userID == '')? 4: false),
+                        maxlength: ((userID == '')? 20: false),
+                        
                     }
                 },
                 messages: {

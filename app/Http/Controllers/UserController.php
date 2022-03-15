@@ -116,8 +116,17 @@ class UserController extends Controller
     {
         $user = user::find($id);
         
-        $hash_password = \Hash::make($request->password);
-	    $request->merge([ 'password' => $hash_password]);
+        if ($request->password == null)
+        {
+            //Old Password
+            $request->merge([ 'password' => $user->password]);
+        }
+        else
+        {
+            //New Password
+            $hash_password = \Hash::make($request->password);
+	        $request->merge([ 'password' => $hash_password]);
+        }
 
         $user->update($request->except('_token'));
         return response([
