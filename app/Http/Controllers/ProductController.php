@@ -134,6 +134,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         product::find($id)->delete();
+        ProductFeature::where('product_id', $id)->delete();
     }
 
     public function product_features($id)
