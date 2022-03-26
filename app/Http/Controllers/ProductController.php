@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Features;
 use App\Models\ProductFeature;
+use App\Models\ProductImage;
 
 class ProductController extends Controller
 {
@@ -16,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id', 'DESC')->get();
+        $products = Product::orderBy('id', 'DESC')->simplepaginate(5);
         return view('products.index', compact('products'));
     }
 
@@ -58,7 +59,22 @@ class ProductController extends Controller
         $request->merge([ 'dimensions' => $dimensionsStr]);
         $vehicle_serial_number = random_int(100000000, 999999999);
         $request->merge([ 'serial_nunber' => $vehicle_serial_number]);
-        $product = Product::create($request->except('_token'));
+        $product = Product::create($request->except('_token','filename'));
+        
+        if($request->file('filename'))
+        {
+            foreach ($request->file('filename') as $image) {
+                $ProductImage = new ProductImage;
+                $given_name = null;
+                $name = is_null($given_name) ? uniqid() : $given_name . '-' . rand(1, 6000);
+                $name = $name . '.' . $image->extension();
+                \Storage::disk('public')->putFileAs('images', $image, $name);                
+                $ProductImage->image_url = $name;
+                $ProductImage->product_id = $product->id;
+                $ProductImage->save();
+            }
+        }
+
         
         return response([
             'redirect_url' => url('admin/product/'.$product->id.'/features'),

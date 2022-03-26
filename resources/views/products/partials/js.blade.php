@@ -75,10 +75,19 @@
                 },
 
                 submitHandler: function(form) {
+
+                    $('.btn').attr('disabled', true);
+                    $('.btn').html("Please wait...")
+                    $form = $(this);
+                    
                     $.ajax({
                         url : $('#productForm').attr('action'),
                         type: $('#productForm').attr('method'),
-                        data: $('#productForm').serialize(),
+
+                        dataType: "JSON",
+                        data: new FormData(form),
+                        processData: false,
+                        contentType: false,
                         
                         success: function(response)
                         {
@@ -244,6 +253,18 @@
             })
         });
     //Product Features Create
+
+
+    $('#varients').keydown(function (e) { 
+        if (e.keyCode == 13) {
+            $('#varients').val($('#varients').val() + ', ');
+        }
+    });
+    $('#colours').keydown(function (e) { 
+        if (e.keyCode == 13) {
+            $('#colours').val($('#colours').val() + ', ');
+        }
+    });
 
 </script>
 

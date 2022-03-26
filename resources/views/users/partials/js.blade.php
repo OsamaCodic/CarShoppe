@@ -52,6 +52,11 @@
                 },
 
                 submitHandler: function(form) {
+
+                    $('.btn').attr('disabled', true);
+                    $('.btn').html("Please wait...")
+                    $form = $(this);
+                    
                     $.ajax({
                         url : $('#userForm').attr('action'),
                         type: $('#userForm').attr('method'),

@@ -157,5 +157,9 @@
     .themeBtn {
         width:25%;
     }
+
+    .red_star {
+        color: red;
+    }
 </style>
 

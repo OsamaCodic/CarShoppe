@@ -52,6 +52,10 @@
                         </tbody>
                     </table>
                 </div>
+                {{-- {{ $users->links() }} --}}
+                <p>Showing {!! $products->firstItem() !!} to {!! $products->lastItem() !!}</p>
+
+                {{ $products->links() }}
             </div>
         </div>
     </div>

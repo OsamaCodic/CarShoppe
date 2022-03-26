@@ -1,9 +1,9 @@
-<form id="productForm" action="{{$form_action}}" method="{{$form_method}}">
+<form id="productForm" action="{{$form_action}}" method="{{$form_method}}" enctype="multipart/form-data">
 
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="brand">Brand</label>
+                <label for="brand">Brand <span class="red_star">*</span></label>
                 <select class="form-control" name="brand_id" id="brand">
                     <option value="">--Select--</option>
                     <option value="1">A</option>
@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="type">Type</label>
+                <label for="type">Type <span class="red_star">*</span></label>
                 <select class="form-control" name="type_id" id="type">
                     <option value="">--Select--</option>
                     <option value="1">A</option>
@@ -28,19 +28,19 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">Name <span class="red_star">*</span></label>
                 <input type="text" class="form-control" id="name" name="name" value="{{@$product->name}}" placeholder="Enter product name...">
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="model">Model</label>
+                <label for="model">Model <span class="red_star">*</span></label>
                 <input type="number" class="form-control" id="model" name="model" value="{{@$product->model}}" placeholder="2015...">
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="engine_cc">Engine cc</label>
+                <label for="engine_cc">Engine cc <span class="red_star">*</span></label>
                 <select class="form-control" name="engine_cc" id="engine_cc">
                     <option value="">--Select--</option>
                     <option value="660" {{ @$product->engine_cc == 660 ? 'selected' : '' }}>660</option>
@@ -71,13 +71,13 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="fuel_avg">Fuel average</label>
+                <label for="fuel_avg">Fuel average <span class="red_star">*</span></label>
                 <input type="number" class="form-control" id="fuel_avg" name="fuel_average" value="{{@$product->fuel_average}}" placeholder="Approximately average...">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="display_order">Display Order</label>
+                <label for="display_order">Display Order <span class="red_star">*</span></label>
                 <input type="number" class="form-control" id="display_order" name="display_order" value="{{@$product->display_order}}" maxlength="5" placeholder="Enter product list order...">
             </div>
         </div>
@@ -86,7 +86,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
-                <label for="no_of_doors">No of Doors</label>
+                <label for="no_of_doors">No of Doors <span class="red_star">*</span></label>
                 <select class="form-control" name="no_of_doors" id="no_of_doors">
                     <option value="">--Select--</option>
                     <option value="2" {{ @$product->no_of_doors == 2 ? 'selected' : '' }}>2 Doors</option>
@@ -102,7 +102,7 @@
         </div>
         <div class="col-md-6" id="selected_transmission">
             <div class="form-group">
-                <label for="transmission">Transmission</label>
+                <label for="transmission">Transmission <span class="red_star">*</span></label>
                 <select class="form-control" name="transmission" id="transmission">
                     <option value="">--Select--</option>
                     <option value="Automatic" {{ @$product->transmission == 'Automatic' ? 'selected' : '' }}>Automatic</option>
@@ -112,7 +112,7 @@
         </div>
         <div class="col-md-3">
             <div id="select_gears" class="form-group" style="display: none">
-                <label for="gears">Gears</label>
+                <label for="gears">Gears <span class="red_star">*</span></label>
                 <select class="form-control" name="gears" id="gears">
                     <option value="">--Select--</option>
                     <option value="1" {{ @$product->gears == 1 ? 'selected' : '' }}>1</option>
@@ -129,7 +129,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
-                <label for="price">Price (Rs)</label>
+                <label for="price">Price (Rs) <span class="red_star">*</span></label>
                 <input type="number" class="form-control" id="price" name="price" value="{{@$product->price}}" placeholder="Price in rupees">
             </div>
         </div>
@@ -162,14 +162,14 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <label for="varients">Varients</label>
-                <textarea class="form-control" id="varients" name="varients" placeholder="Eg, varient 1, varient 2, varient 3, ..." rows="4">{{@$product->varients}}</textarea>
+                <label for="varients">Varients <span class="red_star">*</span></label>
+                <textarea class="form-control" id="varients" name="varients" placeholder="Press enter after one" rows="4">{{@$product->varients}}</textarea>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="colours">Colours</label>
-                <textarea class="form-control" id="colours" name="colours" placeholder="Eg, Red, Blue, Black, ..." rows="4">{{@$product->colours}}</textarea>
+                <textarea class="form-control" id="colours" name="colours" placeholder="Press enter after one" rows="4">{{@$product->colours}}</textarea>
             </div>
         </div>
         <div class="col-md-4">
@@ -181,6 +181,13 @@
     </div>
 
     <input type="hidden" name="status" value="1">
+
+    <br>
+    <div class="form-group">
+        <label for="">Pictures <span class="red_star">*</span></label>
+        <input type="file" required name="filename[]" class="p-1" multiple>
+    </div>
+    <br>
 
     <button type="submit" class="btn {{$form_btn_class}} rounded-pill themeBtn zoomBtn"  style="">{{$form_btn}} <i class="fa {{$form_btn_icon}} ml-2" aria-hidden="true"></i></button>
     <a href="{{url('admin/products')}}" type="button" class="btn btn-outline-secondary rounded-pill ml-3 themeBtn zoomCancelBtn">Cancel <i class="fa fa-times ml-2" aria-hidden="true"></i></a>
