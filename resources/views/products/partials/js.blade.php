@@ -289,10 +289,11 @@
         }
         $('#file-input').on("change", previewImages);
     //File upload Validation and preview
-
     
 </script>
 
+
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-    CKEDITOR.replace( '#description' );
-  </script>
+    CKEDITOR.replace( 'description' );
+</script>
