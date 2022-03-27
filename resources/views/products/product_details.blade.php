@@ -15,6 +15,74 @@
                 <h6 class="m-0 font-weight-bold text-primary">Details</h6>
             </div>
             <div class="card-body">
+{{-- 
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+
+                      @foreach ($product->productImages as $image)
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{asset('storage')}}/images/{{$product->productImages[0]->image_name}}" height="30%" width="30%" />
+                        </div>
+                      @endforeach
+
+                    </div>
+
+
+
+
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                </div> --}}
+
+                <div class="row">
+                    <div class="col-md-9">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                @foreach($product->productImages as $key => $image)
+                                    <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                                        <img src="{{asset('storage')}}/images/{{$image->image_name}}" class="d-block w-100" height="400" width="50">
+                                        
+                                    </div>
+                                @endforeach
+                            </div>
+                            <a class="carousel-control-prev" href="#myCarousel" role="button"  data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true">     </span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card card-body bg-light">
+                            <p><strong>Features</strong></p>
+                            @foreach ($product->productFeatures as $feature)
+                            <p style="font-size: 11px"><i class="fa fa-check" aria-hidden="true" style="color: #3bc624"></i> {{$feature->feature->title}}</p>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
                 <div class="row">
                     <div class="col-md-12"><h3>Brand: </h3></div>
                     <div class="col-md-12"><h3>Name: {{$product->name}} <small class="text-danger">(Rs - {{$product->price}})</small></h3></div>

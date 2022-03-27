@@ -12,4 +12,14 @@ class ProductFeature extends Model
     protected $table= 'product_features';
 
     protected $guarded = [];
+
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product', 'product_id');
+    }
+
+    public function feature()
+    {
+        return $this->belongsTo('App\Models\Features', 'feature_id');
+    }
 }

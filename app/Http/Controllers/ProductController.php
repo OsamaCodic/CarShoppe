@@ -31,7 +31,6 @@ class ProductController extends Controller
         $card_title = 'Create Product';
         $card_bg = 'bg-success';
         $form_action= url('admin/products');
-        $form_method="POST";
         $form_btn = 'Save';
         $form_btn_icon = 'fa fa-plus';
         $form_btn_class = 'btn-success';
@@ -40,7 +39,6 @@ class ProductController extends Controller
             'card_bg',
             'card_title',
             'form_action',
-            'form_method',
             'form_btn_class',
             'form_btn_icon',
             'form_btn'
@@ -59,27 +57,43 @@ class ProductController extends Controller
         $request->merge([ 'dimensions' => $dimensionsStr]);
         $vehicle_serial_number = random_int(100000000, 999999999);
         $request->merge([ 'serial_nunber' => $vehicle_serial_number]);
-        $product = Product::create($request->except('_token','filename'));
-        
+
+        $product = Product::updateOrCreate(['id'=>$request->product_id],$request->except('_token', 'product_id', 'filename'));
+       
         if($request->file('filename'))
         {
-            foreach ($request->file('filename') as $image) {
+            //Remove prevous images
+            ProductImage::where('product_id', $request->product_id)->delete();
+
+            foreach ($request->file('filename') as $image)
+            {
                 $ProductImage = new ProductImage;
                 $given_name = null;
                 $name = is_null($given_name) ? uniqid() : $given_name . '-' . rand(1, 6000);
                 $name = $name . '.' . $image->extension();
                 \Storage::disk('public')->putFileAs('images', $image, $name);                
-                $ProductImage->image_url = $name;
+                $ProductImage->image_name = $name;
                 $ProductImage->product_id = $product->id;
                 $ProductImage->save();
             }
         }
 
-        
-        return response([
-            'redirect_url' => url('admin/product/'.$product->id.'/features'),
-            'status' => 'New Product created successfully!'
-        ],200);
+        if ($request->product_id == null)
+        {
+            //Create
+            return response([
+                'redirect_url' => url('admin/product/'.$product->id.'/features'),
+                'status' => 'New Product created successfully!'
+            ],200);
+        }
+        else
+        {
+            //Update
+            return response([
+                'redirect_url' => url('admin/products'),
+                'status' => 'Product Updated successfully!'
+            ],200);
+        }
     }
 
     /**
@@ -104,8 +118,7 @@ class ProductController extends Controller
     {
         $card_title = 'Edit Product';
         $card_bg = 'bg-warning';
-        $form_action= url('admin/products/'.$id);
-        $form_method="put";
+        $form_action= url('admin/products');
         $form_btn = 'Update';
         $form_btn_icon = 'fa fa-redo';
         $form_btn_class = 'btn-warning';
@@ -116,7 +129,6 @@ class ProductController extends Controller
             'card_bg',
             'card_title',
             'form_action',
-            'form_method',
             'form_btn_class',
             'form_btn_icon',
             'form_btn',
@@ -133,12 +145,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->update($request->except('_token'));
-        return response([
-            'redirect_url' => url('admin/products'),
-            'status' => 'Product Updated successfully!'
-        ],200);
+        //
     }
 
     /**

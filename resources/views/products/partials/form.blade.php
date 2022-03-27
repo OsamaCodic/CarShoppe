@@ -1,4 +1,6 @@
-<form id="productForm" action="{{$form_action}}" method="{{$form_method}}" enctype="multipart/form-data">
+<form id="productForm" action="{{$form_action}}" method="POST" enctype="multipart/form-data">
+
+    <input type="hidden"  id="" name="product_id" value="{{@$product->id}}" placeholder="">
 
     <div class="row">
         <div class="col-md-6">
@@ -148,9 +150,15 @@
                     <div class="col">
                       <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Length">
                     </div>
+                    
+                    <strong class="mt-1">x</strong>
+
                     <div class="col">
                       <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Width">
                     </div>
+
+                    <strong class="mt-1">x</strong>
+                    
                     <div class="col">
                       <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Height">
                     </div>
@@ -160,22 +168,26 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="varients">Varients <span class="red_star">*</span></label>
                 <textarea class="form-control" id="varients" name="varients" placeholder="Press enter after one" rows="4">{{@$product->varients}}</textarea>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="colours">Colours</label>
                 <textarea class="form-control" id="colours" name="colours" placeholder="Press enter after one" rows="4">{{@$product->colours}}</textarea>
             </div>
         </div>
-        <div class="col-md-4">
+    </div>
+    
+    <div class="row">
+        
+        <div class="col-md-12">
             <div class="form-group">
                 <label for="description">Product Description</label>
-                <textarea class="form-control" id="description" name="description" placeholder="Enter..." rows="4">{{@$product->description}}</textarea>
+                <textarea class="form-control" id="description" name="description" placeholder="Enter..." maxlength="50">{{@$product->description}}</textarea>
             </div>
         </div>
     </div>
@@ -185,10 +197,18 @@
     <br>
     <div class="form-group">
         <label for="">Pictures <span class="red_star">*</span></label>
-        <input type="file" required name="filename[]" class="p-1" multiple>
-    </div>
-    <br>
+        <input accept="image/*" id="file-input" type="file" name="filename[]" class="p-1" multiple @if (@$product->productImages == null) required @endif>
 
-    <button type="submit" class="btn {{$form_btn_class}} rounded-pill themeBtn zoomBtn"  style="">{{$form_btn}} <i class="fa {{$form_btn_icon}} ml-2" aria-hidden="true"></i></button>
+        <br>
+        @if (@$product->productImages != null)      
+            @foreach ($product->productImages as $image)
+                <img src="{{asset('storage')}}/images/{{$image->image_name}}" height="20%" width="20%" />
+            @endforeach
+        @endif
+        
+        <div id="preview"></div>
+    </div>
+
+    <button type="submit" id="submitBtn" class="btn {{$form_btn_class}} rounded-pill themeBtn zoomBtn"  style="">{{$form_btn}} <i class="fa {{$form_btn_icon}} ml-2" aria-hidden="true"></i></button>
     <a href="{{url('admin/products')}}" type="button" class="btn btn-outline-secondary rounded-pill ml-3 themeBtn zoomCancelBtn">Cancel <i class="fa fa-times ml-2" aria-hidden="true"></i></a>
 </form>

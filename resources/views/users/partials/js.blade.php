@@ -53,8 +53,8 @@
 
                 submitHandler: function(form) {
 
-                    $('.btn').attr('disabled', true);
-                    $('.btn').html("Please wait...")
+                    $('#submitBtn').attr('disabled', true);
+                    $('#submitBtn').html("Please wait...")
                     $form = $(this);
                     
                     $.ajax({

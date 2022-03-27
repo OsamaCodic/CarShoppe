@@ -20,7 +20,7 @@
         <!-- Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                {{-- <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$users->count()}})</small></h6> --}}
+                <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$products->count()}})</small></h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -31,7 +31,7 @@
                                 <th>Brand</th>
                                 <th>Type</th>
                                 <th>Name</th>
-                                {{-- <th>Images</th> --}}
+                                <th>Images</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -42,6 +42,9 @@
                                     <td>{{$product->brand_id}}</td>
                                     <td>{{$product->type_id}}</td>
                                     <td>{{$product->name}}</td>
+                                    <td>
+                                        <img src="{{asset('storage')}}/images/{{@$product->productImages[0]->image_name}}" height="100%" width="100%" />
+                                    </td>
                                     <td>
                                         <i class="fa fa-trash zoom" onclick="delete_product({{$product}})" aria-hidden="true" style="color: #bf1616" data-toggle="tooltip" data-placement="top" title="Delete"></i>
                                         <a href="{{ url('admin/products/'.$product->id.'/edit') }}" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>

@@ -9,4 +9,9 @@ class Features extends Model
 {
     use HasFactory;
     protected $table = 'features';
+
+    public function features()
+    {
+        return $this->hasOne('App\Models\ProductFeature', 'feature_id');
+    }
 }
