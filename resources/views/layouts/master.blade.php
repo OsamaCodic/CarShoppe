@@ -60,7 +60,7 @@
                 <div id="collapseBrands" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">types:</h6>
-                        <a class="collapse-item" href="#">All</a>
+                        <a class="collapse-item" href="{{url('/admin/brands')}}">All</a>
                     </div>
                 </div>
             </li>
@@ -74,7 +74,7 @@
                 <div id="collapseTypes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Shapes:</h6>
-                        <a class="collapse-item" href="#">All</a>
+                        <a class="collapse-item" href="{{url('/admin/types')}}">All</a>
                     </div>
                 </div>
             </li>

@@ -1,0 +1,110 @@
+<script>
+    $(document).ready(function () {
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        // Brand Create/Update
+            $("#brandForm").validate({
+                errorClass: "jqError fail-alert",
+                validClass: "valid success-alert",
+
+                rules: {
+                    title: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 15,
+                    },
+                    
+                    display_order: {
+                        required: true,
+                    },
+                    
+                },
+                messages: {
+                    title: {
+                        required: "Brand must have title!",
+                    },
+                    last_name: {
+                        display_order: "Order is required!",
+                    }
+                },
+
+                submitHandler: function(form) {
+
+                    $('#submitBtn').attr('disabled', true);
+                    $('#submitBtn').html("Please wait...")
+                    $form = $(this);
+                    
+                    $.ajax({
+                        url : $('#brandForm').attr('action'),
+                        type: $('#brandForm').attr('method'),
+                        data: $('#brandForm').serialize(),
+                        
+                        success: function(response){
+                            swal({
+                                text: response.status,
+                                timer: 5000,
+                                icon:"success",
+                                showConfirmButton: false,
+                                type: "error"
+                            })
+                            setTimeout(function(){
+                                location.href = response.redirect_url;
+                            }, 1000);
+                        }
+                    });
+                }
+            });
+        // Brand Create/Update
+    });
+
+    //Brand delete
+        function delete_brand(obj)
+        {
+            var url = "{{ url('admin/brands') }}";
+            var dltUrl = url+"/"+obj.id;
+        
+            swal({
+                    title: "Do you want to delete this Brand?",
+                    text: obj.title,
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: dltUrl,
+                        type: "DELETE",
+                        data:{
+                            _token:'{{ csrf_token() }}',
+                            id:'id'
+                        }           
+                    })
+                    .done(function(response) {
+                        swal({
+                            title: "Brand deleted!",
+                            text: "Brand deleted permanently",
+                            icon: "success",
+                            timer: 5000,
+                            buttons: false,
+                            dangerMode: true,
+                        })
+                        setTimeout(function(){
+                            location.reload();
+                        }, 1000);
+                    })
+                }
+                else {
+                    swal("Cancelled", "Your Brand is safe :)", "error");
+                }
+            });
+        }
+    //Brand delete
+    
+    CKEDITOR.replace( 'description' ); // Textarea Editor
+</script>

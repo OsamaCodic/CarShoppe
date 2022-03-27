@@ -358,10 +358,5 @@
         });
     // Selected surveys Delete
     
-</script>
-
-
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script>
-    CKEDITOR.replace( 'description' );
+    CKEDITOR.replace( 'description' ); // Textarea Editor
 </script>

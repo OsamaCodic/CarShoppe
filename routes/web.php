@@ -25,12 +25,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::prefix('admin')->group(function () {
         
         Route::resource('/users', UserController::class);
-        Route::resource('/products', ProductController::class);
-        Route::resource('/products', ProductController::class);
-        
-        Route::get('product/{id}/features', 'ProductController@product_features');
-        Route::post('product_features', 'ProductController@store_features');
-        Route::post('products/delete_selected_rows', 'ProductController@delete_selected_rows');
+
+        // Start Products routes
+            Route::resource('/products', ProductController::class);
+            Route::resource('/products', ProductController::class);
+            
+            Route::get('product/{id}/features', 'ProductController@product_features');
+            Route::post('product_features', 'ProductController@store_features');
+            Route::post('products/delete_selected_rows', 'ProductController@delete_selected_rows');
+        // End Products routes
+
+        // Start Brands routes
+            Route::resource('/brands', BrandController::class);
+        // End Brands routes
+
+        // Start Types routes
+            Route::resource('/Types', TypeController::class);
+        // End Types routes
 
     });
 // All backend routes
