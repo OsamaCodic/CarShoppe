@@ -40,7 +40,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         // End Brands routes
 
         // Start Types routes
-            Route::resource('/Types', TypeController::class);
+            Route::resource('/types', TypeController::class);
         // End Types routes
 
     });

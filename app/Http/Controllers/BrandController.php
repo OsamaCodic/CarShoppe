@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\brand;
+use App\Models\Brand;
 
 class BrandController extends Controller
 {
@@ -56,7 +56,7 @@ class BrandController extends Controller
 
         return response([
             'redirect_url' => url('admin/brands'),
-            'status' => 'Brand Created successfully!'
+            'status' => 'New Brand Created successfully!'
         ],200);
     }
 

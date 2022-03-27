@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Type;
 
 class TypeController extends Controller
 {
@@ -13,7 +14,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::orderBy('display_order')->simplepaginate(5);
+        return view('types.index', compact('types'));
     }
 
     /**
@@ -23,7 +25,23 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        $card_title = 'Create Type';
+        $card_bg = 'bg-success';
+        $form_action= url('admin/types');
+        $form_method= "POST";
+        $form_btn = 'Save';
+        $form_btn_icon = 'fa fa-plus';
+        $form_btn_class = 'btn-success';
+
+        return view('types.create', compact(
+            'card_bg',
+            'card_title',
+            'form_action',
+            'form_method',
+            'form_btn_class',
+            'form_btn_icon',
+            'form_btn'
+        ));
     }
 
     /**
@@ -34,7 +52,11 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Type::create($request->except('_token'));
+        return response([
+            'redirect_url' => url('admin/types'),
+            'status' => 'New Type Created successfully!'
+        ],200);
     }
 
     /**
@@ -56,7 +78,26 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $card_title = 'Update Type';
+        $card_bg = 'bg-warning';
+        $form_action= url('admin/types/'.$id);
+        $form_method= "PUT";
+        $form_btn = 'Update';
+        $form_btn_icon = 'fa fa-plus';
+        $form_btn_class = 'btn-warning';
+
+        $type = Type::get()->where('id', $id)->first();
+
+        return view('types.create', compact(
+            'card_bg',
+            'card_title',
+            'form_action',
+            'form_method',
+            'form_btn_class',
+            'form_btn_icon',
+            'form_btn',
+            'type'
+        ));
     }
 
     /**
@@ -68,7 +109,12 @@ class TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $type = Type::find($id);
+        $type->update($request->except('_token'));
+        return response([
+            'redirect_url' => url('admin/types'),
+            'status' => 'Type Updated successfully!'
+        ],200);
     }
 
     /**
@@ -79,6 +125,6 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Type::find($id)->delete();
     }
 }
