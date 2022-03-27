@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Type;
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Features;
-use App\Models\ProductFeature;
 use App\Models\ProductImage;
+use App\Models\ProductFeature;
 
 class ProductController extends Controller
 {
@@ -35,13 +37,18 @@ class ProductController extends Controller
         $form_btn_icon = 'fa fa-plus';
         $form_btn_class = 'btn-success';
 
+        $brands = Brand::orderBy('display_order')->get();
+        $types = Type::orderBy('display_order')->get();
+
         return view('products.create', compact(
             'card_bg',
             'card_title',
             'form_action',
             'form_btn_class',
             'form_btn_icon',
-            'form_btn'
+            'form_btn',
+            'brands',
+            'types'
         ));
     }
 
@@ -124,6 +131,10 @@ class ProductController extends Controller
         $form_btn_class = 'btn-warning';
 
         $product = Product::get()->where('id', $id)->first();
+        
+        $brands = Brand::orderBy('display_order')->get();
+        $types = Type::orderBy('display_order')->get();
+
 
         return view('products.create', compact(
             'card_bg',
@@ -132,7 +143,9 @@ class ProductController extends Controller
             'form_btn_class',
             'form_btn_icon',
             'form_btn',
-            'product'
+            'product',
+            'brands',
+            'types'
         ));
     }
 

@@ -12,6 +12,16 @@ class Product extends Model
     protected $table = 'products';
     protected $guarded = [];
 
+    public function brand()
+    {
+        return $this->belongsTo('App\Models\brand');
+    }
+    
+    public function type()
+    {
+        return $this->belongsTo('App\Models\Type');
+    }
+
     public function productImages()
     {
         return $this->hasMany('App\Models\ProductImage');

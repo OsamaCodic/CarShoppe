@@ -8,9 +8,10 @@
                 <label for="brand">Brand <span class="red_star">*</span></label>
                 <select class="form-control" name="brand_id" id="brand">
                     <option value="">--Select--</option>
-                    <option value="1">A</option>
-                    <option value="2">B</option>
-                    <option value="3">C</option>
+
+                    @foreach (@$brands as $brand)
+                        <option value="{{@$brand->id}}" {{ @$product->brand_id == @$brand->id ? 'selected' : '' }}>{{$brand->title}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -19,9 +20,10 @@
                 <label for="type">Type <span class="red_star">*</span></label>
                 <select class="form-control" name="type_id" id="type">
                     <option value="">--Select--</option>
-                    <option value="1">A</option>
-                    <option value="2">B</option>
-                    <option value="3">C</option>
+                    
+                    @foreach ($types as $type)
+                        <option value="{{@$type->id}}" {{ @$product->type_id == @$type->id ? 'selected' : '' }}>{{$type->title}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

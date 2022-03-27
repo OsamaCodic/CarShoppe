@@ -84,9 +84,9 @@
                 <hr>
 
                 <div class="row">
-                    <div class="col-md-12"><h3>Brand: </h3></div>
+                    <div class="col-md-12"><h3>Brand: {{$product->brand->title}}</h3></div>
                     <div class="col-md-12"><h3>Name: {{$product->name}} <small class="text-danger">(Rs - {{$product->price}})</small></h3></div>
-                    <div class="col-md-6"><strong>Type: </strong></div>
+                    <div class="col-md-6"><strong>Type: </strong>{{$product->type->title}}</div>
                     <div class="col-md-6"><strong>Serial No: </strong>{{$product->serial_nunber}}</div>
                     <div class="col-md-6"><strong>Model: </strong>{{$product->model}}</div>
                     <div class="col-md-6"><strong>Doors: </strong>{{$product->no_of_doors}}</div>
