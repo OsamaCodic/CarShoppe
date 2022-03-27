@@ -16,56 +16,126 @@
     height: 0;
     }
 
-    /* The slider */
-    .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: -5px;
-    right: 15px;
-    bottom: -3px;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-    }
-
-    .slider:before {
-
+    /* The Blue Slider */
+        .slider {
         position: absolute;
-        content: "";
-        height: 20px;
-        width: 20px;
-        left: 2px;
-        bottom: 4px;
-        background-color: white;
+        cursor: pointer;
+        top: 0;
+        left: -5px;
+        right: 15px;
+        bottom: -3px;
+        background-color: #ccc;
         -webkit-transition: .4s;
         transition: .4s;
-    }
+        }
 
-    input:checked + .slider {
-    background-color: #36b9cc;
-    }
+        .slider:before {
 
-    input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-    }
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-    input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-    }
+        input:checked + .slider {
+        background-color: #36b9cc;
+        }
 
-    /* Rounded sliders */
-    .slider.round {
-    border-radius: 34px;
-    top: 4px;
-    }
+        input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+        }
 
-    .slider.round:before {
-    border-radius: 50%;
-    top: 1px;
-    }
+        input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+        border-radius: 34px;
+        top: 4px;
+        }
+
+        .slider.round:before {
+        border-radius: 50%;
+        top: 1px;
+        }
+
+        /* Red Slider */
+
+        /* The switch - the box around the redSlider */
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 24;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+    /* The Blue Slider */
+
+    /* The Red Slider */
+        .redSlider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: -5px;
+        right: 15px;
+        bottom: -3px;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        .redSlider:before {
+
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .redSlider {
+        background-color: red;
+        }
+
+        input:focus + .redSlider {
+        box-shadow: 0 0 1px red;
+        }
+
+        input:checked + .redSlider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+        }
+
+        /* Rounded redSliders */
+        .redSlider.round {
+        border-radius: 34px;
+        top: 4px;
+        }
+
+        .redSlider.round:before {
+        border-radius: 50%;
+        top: 1px;
+        }
+    /* The Red Slider */
     
 </style>
 {{-- /Toggle Button --}}

@@ -201,4 +201,12 @@ class ProductController extends Controller
             'status' => $product->name.' features added successfully!'
         ],200);
     }
+
+    public function delete_selected_rows(Request $request)
+    {
+        foreach ($request->delete_rows_arr as $del_row_id)
+        {
+            Product::find($del_row_id)->delete();
+        }
+    }
 }

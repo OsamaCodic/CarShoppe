@@ -289,6 +289,74 @@
         }
         $('#file-input').on("change", previewImages);
     //File upload Validation and preview
+
+    // Selected surveys Delete
+        function deleletCheckboxes()
+        {
+            if($('#delete_selected').is(":checked"))
+            {
+                $(".delete").fadeOut("fast");
+                setTimeout(function(){ $(".form-check-input").fadeIn("slow"); }, 200);
+                $("#del_rows_btn").fadeIn("slow");
+                $("#checkbox_delete_Label").removeClass("text-secondary");
+                $("#checkbox_delete_Label").addClass("text-danger");
+            }  
+            else
+            {
+                setTimeout(function(){ $(".delete").fadeIn("slow"); }, 200);
+                $(".form-check-input").fadeOut("fast");
+                $("#del_rows_btn").fadeOut("slow");
+                $("#checkbox_delete_Label").removeClass("text-danger");
+                $("#checkbox_delete_Label").addClass("text-secondary");
+            }
+        }
+
+        $('#del_rows_btn').click( function(evt) {
+
+            evt.preventDefault();
+            var delete_rows_arr = [];
+
+            $("#productTable input:checkbox:checked").each(function()
+            {
+                delete_rows_arr.push($(this).val());
+            });
+
+            swal({
+                title: "Are you sure you want to delete selected Products?",
+                text: "If you delete this, it will be delete permanently!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "{{ url('admin/products/delete_selected_rows') }}",
+                        type:"POST",
+                        data:{
+                            delete_rows_arr:delete_rows_arr,
+                        },        
+                    })
+                    .done(function(response) {
+                        swal({
+                            title: "Selected Products deleted!",
+                            text: "Records deleted permanently",
+                            icon: "success",
+                            timer: 5000,
+                            buttons: false,
+                            dangerMode: true,
+                        })
+                        setTimeout(function(){
+                            location.reload();
+                        }, 1000);
+                    })
+                }
+                else {
+                    swal("Cancelled", "Your surveys is safe :)", "error");
+                }
+            });
+        });
+    // Selected surveys Delete
     
 </script>
 

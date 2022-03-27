@@ -26,9 +26,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         
         Route::resource('/users', UserController::class);
         Route::resource('/products', ProductController::class);
+        Route::resource('/products', ProductController::class);
         
         Route::get('product/{id}/features', 'ProductController@product_features');
         Route::post('product_features', 'ProductController@store_features');
+        Route::post('products/delete_selected_rows', 'ProductController@delete_selected_rows');
 
     });
 // All backend routes
