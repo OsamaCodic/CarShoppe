@@ -44,4 +44,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         // End Types routes
 
     });
+    
+    Route::prefix('front/')->group(function () {
+        // Public routes
+        Route::get('login', 'FrontPagesController@getLogin');
+        Route::post('login', 'FrontPagesController@postLogin');
+        Route::get('logout', 'FrontPagesController@frontLogout');
+
+        Route::get('resetPassword', 'FrontPagesController@resetPassword');
+
+    });
 // All backend routes
