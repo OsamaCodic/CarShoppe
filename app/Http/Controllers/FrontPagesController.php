@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\userRegistedMail;
 
 class FrontPagesController extends Controller
 {
@@ -49,12 +50,31 @@ class FrontPagesController extends Controller
         
     }
 
-    public function register(Request $request) {
-        // Auth::logout(); // To logout user from front_end
-        // if ($request->session()->get('front_customer')) {
-        //     return redirect('front/service_ticket');
-        // }
-        return view('frontend_layout.login');
+    public function Register(Request $request) {
+        return view('frontend_layout.registerForm');
+    }
+    
+    public function postRegister(Request $request) {
+        
+        $hash_password = \Hash::make($request->password);
+	    $request->merge([ 'password' => $hash_password]);
+        
+        $register_user = User::create($request->except('_token'));
+
+        $data = array(
+            'fname'      =>  $register_user->first_name,
+            'lname'   =>   $register_user->last_name
+        );
+
+        
+
+        \Mail::to($register_user->email)->send(new userRegistedMail($data));
+
+		
+        return response([
+            'redirect_url' => url('front/login'),
+            'status' => "Register successfully, You'll recevied email soon!"
+        ],200);
     }
 
     public function frontLogout(Request $request) {

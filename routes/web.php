@@ -48,7 +48,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::prefix('front/')->group(function () {
         // Public routes
         Route::get('login', 'FrontPagesController@getLogin');
-        Route::post('login', 'FrontPagesController@postLogin');
+        Route::get('register', 'FrontPagesController@Register');
+        Route::post('save_register', 'FrontPagesController@postRegister');
         Route::get('logout', 'FrontPagesController@frontLogout');
 
         Route::get('resetPassword', 'FrontPagesController@resetPassword');

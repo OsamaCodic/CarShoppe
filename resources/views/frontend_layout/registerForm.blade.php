@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Classimax</title>
+  <title>CarShoppe | Register</title>
   
   <!-- FAVICON -->
   <link href="{{asset('frontend-layout/')}}img/favicon.png" rel="shortcut icon">
@@ -39,27 +39,23 @@
 
 <body class="body-wrapper">
 
-
   <section class="login py-5 border-top-1">
       <div class="container">
           <div class="row justify-content-center">
               <div class="col-lg-5 col-md-8 align-item-center">
                   <div class="border">
-                      <h3 class="bg-gray p-4">Login Now</h3>
-                      <fieldset class="p-4">
-                            <form id="front_loginForm" action="{{url('front/login')}}" method="post">
-                              @csrf
-                              <input type="text" id="email" name="email" placeholder="email" class="border p-3 w-100 my-2">
-                              <input type="password" id="password" name="password" placeholder="Password" class="border p-3 w-100 my-2">
-                              <div class="loggedin-forgot">
-                                <input type="checkbox" id="keep-me-logged-in">
-                                <label for="keep-me-logged-in" class="pt-3 pb-2">Keep me logged in</label>
-                              </div>
-                              <button type="submit" id="loginBtn" class="d-block py-3 px-5 bg-primary text-white border-0 rounded font-weight-bold mt-3">Log in</button>
-                              <a class="mt-3 d-block  text-primary" href="#">Forget Password?</a>
-                              <a class="mt-3 d-inline-block text-primary" href="{{url('front/register')}}">Register Now</a>
-                            </form>
-                          </fieldset>
+                    <h3 class="bg-gray p-4">Register here</h3>
+                    <fieldset class="p-4">
+                      <form id="front_registerForm" action="{{url('front/save_register')}}" method="post">
+                        @csrf
+                        <input type="text" name="first_name" placeholder="First Name" class="border p-3 w-100 my-2">
+                        <input type="text" name="last_name" placeholder="Last Name" class="border p-3 w-100 my-2">
+                        <input type="text" name="email" placeholder="Email" class="border p-3 w-100 my-2">
+                        <input type="text" name="password" placeholder="Password" class="border p-3 w-100 my-2">
+                        <input type="hidden" name="role" value="2">
+                        <button type="submit" id="regBtn" class="d-block py-3 px-5 bg-success text-white border-0 rounded font-weight-bold mt-3">Register</button>
+                      </form>
+                    </fieldset>
                   </div>
               </div>
           </div>
@@ -87,6 +83,9 @@
 <script src="{{asset('frontend-layout')}}/plugins/google-map/gmap.js"></script>
 <script src="{{asset('frontend-layout')}}/js/script.js"></script>
 
-</body>
+@include('layouts.app_js')
 
+@include('frontend_layout.partials.register_js')
+
+</body>
 </html>
