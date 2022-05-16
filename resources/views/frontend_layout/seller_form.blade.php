@@ -35,8 +35,8 @@
         @include('frontend_layout.header')
     </section>
 
-    {{Session::flash('message', 'This is a message!'); 
-    Session::flash('alert-class', 'alert-danger'); }}
+
+
 
 
     {{-- Content --}}
@@ -154,13 +154,6 @@
     </script>
     <script src="{{ asset('frontend-layout') }}/plugins/google-map/gmap.js"></script>
 
-    <script>
-        setTimeout(function () {
-                $("#flashmessage").hide();
-            }, 2000);
-         
-          </script>
-          
     {{-- <script src="{{ asset('frontend-layout') }}/js/script.js"></script> --}}
 
 </body>

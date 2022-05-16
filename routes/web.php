@@ -58,6 +58,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         //-Pages-//
 
         Route::get('login', 'FrontPagesController@getLogin');
+        Route::post('checkLogin', 'FrontPagesController@checkLogin');
         Route::get('register', 'FrontPagesController@Register');
         Route::post('save_register', 'FrontPagesController@postRegister');
         Route::get('logout', 'FrontPagesController@frontLogout');

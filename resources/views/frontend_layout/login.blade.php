@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Classimax</title>
+  <title>Login</title>
   
   <!-- FAVICON -->
   <link href="{{asset('frontend-layout/')}}img/favicon.png" rel="shortcut icon">
@@ -47,7 +47,7 @@
                   <div class="border">
                       <h3 class="bg-gray p-4">Login Now</h3>
                       <fieldset class="p-4">
-                            <form id="front_loginForm" action="{{url('front/login')}}" method="post">
+                            <form id="front_loginForm" action="{{url('front/checkLogin')}}" method="post">
                               @csrf
                               <input type="text" id="email" name="email" placeholder="email" class="border p-3 w-100 my-2">
                               <input type="password" id="password" name="password" placeholder="Password" class="border p-3 w-100 my-2">

@@ -22,36 +22,43 @@ class FrontPagesController extends Controller
         return view('frontend_layout.login');
     }
 
-    public function postLogin(Request $request) {
+    public function checkLogin(Request $request) {
+
 
         $fields = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string'
         ]);
-
+        
         // Check email
         $user = User::where('email', $fields['email'])->first();
 
-
+        
         if(!$user)
         {
-            return response([
-                'message' => 'Register Your Account'
-            ], 401);
+            return \Redirect::back()->withErrors(['msg' => 'PLease register first!']);
         }
-        // Check password
-        if( !Hash::check($fields['password'], $user->password)) {
-            return response([
-                'message' => 'Wrong Password'
-            ], 401);
-        }
-        
-        $response = [
-            'user' => $user
-        ];
+        else{
 
-        return response($response, 201);
-        
+            // dd($user->password);
+
+            // Check password
+            if( !Hash::check($request->password, $user->password)) {
+                
+                return \Redirect::back()->withErrors(['msg' => 'Sorry, Wrong password!']);
+            }
+            else{
+                return redirect('front/home')->withToastSuccess('Task Created Successfully!');
+
+            }
+            
+            // $response = [
+            //     'user' => $user
+            // ];
+            
+            // return response($response, 201);
+            
+        }
         
     }
 
@@ -165,7 +172,7 @@ class FrontPagesController extends Controller
                 }
             }
 
-            return redirect('front/seller_personal_information/'.$product->id)->with('message','type message here');
+            return redirect('front/seller_personal_information/'.$product->id)->with('success', 'form submit successfully!');
     }
 
     public function seller_detailForm($id) {
