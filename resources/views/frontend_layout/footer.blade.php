@@ -8,9 +8,7 @@
             <!-- footer logo -->
             <img src="{{asset('frontend-layout')}}/images/logo-footer.png" alt="">
             <!-- description -->
-            <p class="alt-color">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-              laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="alt-color">People need the best and most suitable car according to their price range. CarWeb provides a lot of features that help to find the best car. He can select various types of vehicles to find your best ride in easy steps. Aim & Objective is To produce a web-based system that allows customers to register and Buy New or Used cars online.</p>
           </div>
         </div>
         <!-- Link list -->
@@ -18,25 +16,13 @@
           <div class="block">
             <h4>Site Pages</h4>
             <ul>
-              <li><a href="#">Boston</a></li>
-              <li><a href="#">How It works</a></li>
-              <li><a href="#">Deals & Coupons</a></li>
-              <li><a href="#">Articls & Tips</a></li>
-              <li><a href="terms-condition.html">Terms & Conditions</a></li>
-            </ul>
-          </div>
-        </div>
-        <!-- Link list -->
-        <div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
-          <div class="block">
-            <h4>Admin Pages</h4>
-            <ul>
-              <li><a href="category.html">Category</a></li>
-              <li><a href="single.html">Single Page</a></li>
-              <li><a href="store.html">Store Single</a></li>
-              <li><a href="single-blog.html">Single Post</a>
-              </li>
-              <li><a href="blog.html">Blog</a></li>  
+              <li><a href="#">Preview Home</a></li>
+              <li><a href="#">Sell it for me service</a></li>
+              <li><a href="#">Visit new car sections</a></li>
+              <li><a href="#">Blogs</a></li>
+              <li><a href="#">Contact us</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
             </ul>
           </div>
         </div>
@@ -49,7 +35,7 @@
                 <!-- Icon -->
                 <img src="{{asset('frontend-layout')}}/images/footer/phone-icon.png" alt="mobile-icon">
               </a>
-              <p>Get the Dealsy Mobile App and Save more</p>
+              <p>Get the CarShoppe Mobile App and Connect with us</p>
             </div>
             <div class="download-btn d-flex my-3">
               <a href="#"><img src="{{asset('frontend-layout')}}/images/apps/google-play-store.png" class="img-fluid" alt=""></a>
@@ -72,7 +58,7 @@
         <p>Copyright © <script>
             var CurrentYear = new Date().getFullYear()
             document.write(CurrentYear)
-            </script>. All Rights Reserved, theme by <a class="text-primary" href="https://themefisher.com" target="_blank">themefisher.com</a></p>
+            </script>. All Rights Reserved, Business CEO <a class="text-primary" href="http://127.0.0.1:8000" target="_blank">USAMA</a></p>
         </div>
     </div>
     <div class="col-sm-6 col-12">

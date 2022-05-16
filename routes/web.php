@@ -47,6 +47,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     
     Route::prefix('front/')->group(function () {
         // Public routes
+        
+        //-Pages-
+            Route::get('home', 'FrontPagesController@home');
+            Route::get('products', 'FrontPagesController@listPage');
+            Route::get('sellProduct', 'FrontPagesController@sell_product');
+            Route::post('store_sell_product', 'FrontPagesController@store_sellproduct');
+            Route::get('seller_personal_information/{product_id}', 'FrontPagesController@seller_detailForm');
+            Route::post('store_owner_details', 'FrontPagesController@store_ownerDetails');
+        //-Pages-//
+
         Route::get('login', 'FrontPagesController@getLogin');
         Route::get('register', 'FrontPagesController@Register');
         Route::post('save_register', 'FrontPagesController@postRegister');

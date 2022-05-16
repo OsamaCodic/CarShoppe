@@ -14,7 +14,7 @@ class AddColGroundClearanceInProductsTbl extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('ground_clearance')->after('dimensions');
+            $table->integer('ground_clearance')->after('dimensions')->nullable();
         });
     }
 
