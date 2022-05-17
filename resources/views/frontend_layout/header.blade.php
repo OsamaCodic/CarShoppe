@@ -23,15 +23,33 @@
                         </li>
                         <li class="nav-item dropdown dropdown-slide">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Pages <span><i class="fa fa-angle-down"></i></span>
+                                Main <span><i class="fa fa-angle-down"></i></span>
                             </a>
                             <!-- Dropdown list -->
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Brands</a>
-                                <a class="dropdown-item" href="{{url('front/products')}}">Products</a>
+                                <a class="dropdown-item" href="{{url('front/products?status=1')}}">New Cars</a>
+                                <a class="dropdown-item" href="{{url('front/products?status=2')}}">Used cars section</a>
                                 <a class="dropdown-item" href="{{url('front/sellProduct')}}">Sell your car</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown dropdown-slide">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Others <span><i class="fa fa-angle-down"></i></span>
+                            </a>
+                            <!-- Dropdown list -->
+                            <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Parts Store</a>
                                 <a class="dropdown-item" href="#">Blog</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown dropdown-slide">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Site <span><i class="fa fa-angle-down"></i></span>
+                            </a>
+                            <!-- Dropdown list -->
+                            <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">User Profile</a>
                                 <a class="dropdown-item" href="#">About Us</a>
                                 <a class="dropdown-item" href="#">Contact Us</a>

@@ -115,14 +115,22 @@ class FrontPagesController extends Controller
         
         $brands = Brand::orderBy('display_order')->take(5)->get();
         $types = Type::orderBy('display_order')->get();
-        $products = Product::orderBy('display_order')->paginate(5);
-        
-        // dd($brands->products->count());
+        $products = Product::where('status', @$_GET['status'])->orderBy('display_order')->paginate(5);
 
         return view('frontend_layout.list', compact(
             'products',
             'brands'
         ));
+    
+    }
+    
+    public function productDetails($id) {
+        
+        
+        
+        $product = Product::get()->where('id', $id)->first();
+        
+        return view('frontend_layout.product_details', compact('product'));
     
     }
     

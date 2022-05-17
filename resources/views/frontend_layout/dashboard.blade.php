@@ -167,8 +167,8 @@
 				<div class="content-holder">
 					<h2>Start today to link with CarShoppe</h2>
 					<ul class="list-inline mt-30">
-						<li class="list-inline-item"><a class="btn btn-main" href="ad-listing.html">Buy New Car</a></li>
-						<li class="list-inline-item"><a class="btn btn-secondary" href="category.html">Sell Your Car</a></li>
+						<li class="list-inline-item"><a class="btn btn-main" href="{{url('front/products?status=1')}}">Buy New Car</a></li>
+						<li class="list-inline-item"><a class="btn btn-secondary" href="{{url('front/products?status=2')}}">Buy Use Car</a></li>
 					</ul>
 				</div>
 			</div>

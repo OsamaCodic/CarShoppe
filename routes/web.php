@@ -28,7 +28,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
         // Start Products routes
             Route::resource('/products', ProductController::class);
-            Route::resource('/products', ProductController::class);
             
             Route::get('product/{id}/features', 'ProductController@product_features');
             Route::post('product_features', 'ProductController@store_features');
@@ -51,6 +50,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         //-Pages-
             Route::get('home', 'FrontPagesController@home');
             Route::get('products', 'FrontPagesController@listPage');
+            Route::get('product/{product_id}/details', 'FrontPagesController@productDetails');
+            Route::get('used_cars', 'FrontPagesController@usedCars');
             Route::get('sellProduct', 'FrontPagesController@sell_product');
             Route::post('store_sell_product', 'FrontPagesController@store_sellproduct');
             Route::get('seller_personal_information/{product_id}', 'FrontPagesController@seller_detailForm');

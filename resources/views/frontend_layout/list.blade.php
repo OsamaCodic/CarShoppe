@@ -193,7 +193,7 @@
                                         <div class="product-ratings float-lg-right pb-3">
                                           <strong class="text-success">{{$product->price}}</strong>
                                           <br>
-                                          <button class="btn btn-info btn-sm">Buy</button>
+                                          <a href="{{url('front/product/'.$product->id.'/details')}}" class="btn btn-info btn-sm">Buy</a>
                                         </div>
                                     </div>
                                 </div>
