@@ -89,8 +89,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Vechicles:</h6>
                         <a class="collapse-item" href="{{url('/admin/products')}}">All</a>
-                        <a class="collapse-item" href="#">New</a>
-                        <a class="collapse-item" href="#">Used</a>
+                        <a class="collapse-item" href="{{url('/admin/products?status=1')}}">New</a>
+                        <a class="collapse-item" href="{{url('/admin/products?status=2')}}">Used</a>
                     </div>
                 </div>
             </li>
@@ -244,8 +244,9 @@
     <!-- /Logout Modal-->
 
     {{-- ckeditor --}}
-    <script src="{{asset('ckeditor')}}/ckeditor.js"></script>
- 
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('sb-admin-2')}}/vendor/jquery/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

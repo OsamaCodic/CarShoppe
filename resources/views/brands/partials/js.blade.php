@@ -106,5 +106,15 @@
         }
     //Brand delete
     
-    CKEDITOR.replace( 'description' ); // Textarea Editor
+    
+    // CKEDITOR.replace( 'description' ); // Textarea Editor
+
+    ClassicEditor
+        .create( document.querySelector( '#description' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+
+
 </script>

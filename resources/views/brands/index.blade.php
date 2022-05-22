@@ -38,7 +38,7 @@
                             @foreach ($brands as $brand)
                                 <tr>
                                     <td>{{$brand->title}}</td>
-                                    <td>{{$brand->description}}</td>
+                                    <td>{!! $brand->description !!}</td>
                                     <td>{{$brand->display_order}}</td>
                                     <td>
                                         <i class="fa fa-trash zoom" onclick="delete_brand({{$brand}})" aria-hidden="true" style="color: #bf1616"></i>

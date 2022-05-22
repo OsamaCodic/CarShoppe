@@ -37,7 +37,7 @@
                             @foreach ($types as $type)
                                 <tr>
                                     <td>{{$type->title}}</td>
-                                    <td>{{$type->description}}</td>
+                                    <td>{!! $type->description !!}</td>
                                     <td>{{$type->display_order}}</td>
                                     <td>
                                         <i class="fa fa-trash zoom" onclick="delete_type({{$type}})" aria-hidden="true" style="color: #bf1616"></i>

@@ -19,7 +19,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('display_order')->simplepaginate(5);
+        if (@$_GET['status'])
+        {
+            $products = Product::where('status', @$_GET['status'])->orderBy('display_order')->simplepaginate(5);
+        }
+        else
+        {
+            $products = Product::orderBy('display_order')->simplepaginate(5);    
+        }
+        
         return view('products.index', compact('products'));
     }
 

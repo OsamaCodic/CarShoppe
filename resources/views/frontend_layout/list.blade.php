@@ -182,7 +182,7 @@
                                             
                                             <p class="pr-5">
                                               @if ($product->description != null)
-                                                {{$product->description}}
+                                                {!! $product->description !!}
                                               @else
                                                 <p class="text-danger">N/A</p>  
                                               @endif
