@@ -105,8 +105,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">types:</h6>
                         <a class="collapse-item" href="{{url('/admin/users')}}">All</a>
-                        <a class="collapse-item" href="#">Admins</a>
-                        <a class="collapse-item" href="#">Customers</a>
+                        <a class="collapse-item" href="{{url('/admin/users?role=1')}}">Admins</a>
+                        <a class="collapse-item" href="{{url('/admin/users?role=2')}}">Customers</a>
                     </div>
                 </div>
             </li>

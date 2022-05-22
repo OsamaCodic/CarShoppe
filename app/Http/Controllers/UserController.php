@@ -15,7 +15,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        
+
+        if (@$_GET['role'])
+        {
+            $users = User::where('role', @$_GET['role'])->simplepaginate(5);
+        }
+        else
+        {
+            $users = User::all();    
+        }
+        
+
         return view('users.index', compact('users'));
     }
 
