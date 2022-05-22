@@ -20,29 +20,50 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Route::group( 
+//     ['middleware' => ['loginCustomer']], //Customer can't login in backend
+//     function ()
+//     {
+//         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//     }
+// );
+
+
 
 // All backend routes
-    Route::prefix('admin')->group(function () {
-        
-        Route::resource('/users', UserController::class);
 
-        // Start Products routes
-            Route::resource('/products', ProductController::class);
+Route::group(
             
-            Route::get('product/{id}/features', 'ProductController@product_features');
-            Route::post('product_features', 'ProductController@store_features');
-            Route::post('products/delete_selected_rows', 'ProductController@delete_selected_rows');
-        // End Products routes
+    ['middleware' => ['loginCustomer']], //Customer can't login in backend
 
-        // Start Brands routes
-            Route::resource('/brands', BrandController::class);
-        // End Brands routes
-
-        // Start Types routes
-            Route::resource('/types', TypeController::class);
-        // End Types routes
-
-    });
+    function ()
+    {
+    
+        Route::prefix('admin')->group(function () {
+        
+            Route::resource('/users', UserController::class);
+    
+            // Start Products routes
+                Route::resource('/products', ProductController::class);
+                
+                Route::get('product/{id}/features', 'ProductController@product_features');
+                Route::post('product_features', 'ProductController@store_features');
+                Route::post('products/delete_selected_rows', 'ProductController@delete_selected_rows');
+            // End Products routes
+    
+            // Start Brands routes
+                Route::resource('/brands', BrandController::class);
+            // End Brands routes
+    
+            // Start Types routes
+                Route::resource('/types', TypeController::class);
+            // End Types routes
+    
+        });
+    
+    }
+);
+    
     
     Route::prefix('front/')->group(function () {
         // Public routes
@@ -58,13 +79,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
             Route::post('store_owner_details', 'FrontPagesController@store_ownerDetails');
         //-Pages-//
 
-        Route::get('login', 'FrontPagesController@getLogin');
+        // Route::get('login', 'FrontPagesController@getLogin');
         Route::post('checkLogin', 'FrontPagesController@checkLogin');
         Route::get('register', 'FrontPagesController@Register');
         Route::post('save_register', 'FrontPagesController@postRegister');
         Route::get('logout', 'FrontPagesController@frontLogout');
 
         Route::get('resetPassword', 'FrontPagesController@resetPassword');
+
+        // group middleware -->Only Admin can login in backend
+
+        
+
 
     });
 // All backend routes
