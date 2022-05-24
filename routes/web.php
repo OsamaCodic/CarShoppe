@@ -49,14 +49,18 @@ Route::group(
                 Route::get('product/{id}/features', 'ProductController@product_features');
                 Route::post('product_features', 'ProductController@store_features');
                 Route::post('products/delete_selected_rows', 'ProductController@delete_selected_rows');
+                Route::get('/search_product', 'ProductController@index');
+                Route::get('/advance_search_product', 'ProductController@index');
             // End Products routes
     
             // Start Brands routes
                 Route::resource('/brands', BrandController::class);
+                Route::get('/search_brand', 'BrandController@index');
             // End Brands routes
     
             // Start Types routes
                 Route::resource('/types', TypeController::class);
+                Route::get('/search_type', 'TypeController@index');
             // End Types routes
     
         });
@@ -79,9 +83,9 @@ Route::group(
             Route::post('store_owner_details', 'FrontPagesController@store_ownerDetails');
         //-Pages-//
 
-        // Route::get('login', 'FrontPagesController@getLogin');
+        Route::get('login', 'FrontPagesController@getLogin');
         Route::post('checkLogin', 'FrontPagesController@checkLogin');
-        Route::get('register', 'FrontPagesController@Register');
+        Route::get('type', 'FrontPagesController@Register');
         Route::post('save_register', 'FrontPagesController@postRegister');
         Route::get('logout', 'FrontPagesController@frontLogout');
 

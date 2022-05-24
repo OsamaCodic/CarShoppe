@@ -14,7 +14,15 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::orderBy('display_order')->simplepaginate(5);
+        $query = Type::query();
+
+        if (@$_GET['search_title'] && @$_GET['search_title'] !="")
+        {
+            $query->where('title','LIKE','%'.$_GET['search_title'].'%');
+        }
+        
+        $types = $query->orderBy('display_order')->simplepaginate(5);   
+    
         return view('types.index', compact('types'));
     }
 

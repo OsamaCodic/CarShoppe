@@ -20,7 +20,27 @@
         <!-- Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$brands->count()}})</small></h6>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$brands->count()}})</small></h6>
+                    </div>
+                    <div class="col-md-4">
+                        <form action="{{url('admin/search_brand')}}" method="get" role="search" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            {{ csrf_field() }}
+                            <div class="input-group">
+                                <input type="text" name="search_title" class="form-control bg-white border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                    <a href="{{url('admin/brands')}}" class="btn btn-danger" type="button">
+                                        <i class="fas fa-times fa-sm"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

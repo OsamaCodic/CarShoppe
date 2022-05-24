@@ -1,10 +1,16 @@
 <script>
     $(document).ready(function () {
 
+        
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+        
+        $("#advanceSearchBtn").click(function(){        
+
+            $("#advanceSearchForm").submit(); // Submit the form
         });
 
         // Product Create/Update

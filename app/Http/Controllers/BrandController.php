@@ -14,7 +14,15 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::orderBy('display_order')->simplepaginate(5);
+        $query = Brand::query();
+
+        if (@$_GET['search_title'] && @$_GET['search_title'] !="")
+        {
+            $query->where('title','LIKE','%'.$_GET['search_title'].'%');
+        }
+        
+        $brands = $query->orderBy('display_order')->simplepaginate(5);   
+    
         return view('brands.index', compact('brands'));
     }
 
@@ -128,4 +136,5 @@ class BrandController extends Controller
     {
         Brand::find($id)->delete();
     }
+
 }
