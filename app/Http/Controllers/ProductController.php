@@ -68,6 +68,10 @@ class ProductController extends Controller
             $query->where('colours',$_GET['colours']);
         }
         
+        if (@$_GET['sortbyName'] && @$_GET['sortbyName'] !="")
+        {
+            $query->orderBy('name', @$_GET['sortbyName']);
+        }
         
         $products = $query->orderBy('display_order')->simplepaginate(5);
         

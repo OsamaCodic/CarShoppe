@@ -47,7 +47,14 @@
                     <table class="table table-bordered" id="brandTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Title</th>
+                                <th>
+                                    Title
+                                    @if (@$_GET['sortbyTitle'] == "ASC")
+                                        <a href="{{url('admin/brands?sortbyTitle=DESC')}}"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a>
+                                        @else
+                                        <a href="{{url('admin/brands?sortbyTitle=ASC')}}"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                                    @endif
+                                </th>
                                 <th>Description</th>
                                 <th>Display Order</th>
                                 {{-- <th>Logo</th> --}}

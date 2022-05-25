@@ -21,6 +21,11 @@ class TypeController extends Controller
             $query->where('title','LIKE','%'.$_GET['search_title'].'%');
         }
         
+        if (@$_GET['sortbyTitle'] && @$_GET['sortbyTitle'] !="")
+        {
+            $query->orderBy('title', @$_GET['sortbyTitle']);
+        }
+        
         $types = $query->orderBy('display_order')->simplepaginate(5);   
     
         return view('types.index', compact('types'));
