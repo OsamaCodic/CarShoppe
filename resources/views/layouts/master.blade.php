@@ -96,6 +96,21 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStore"
+                    aria-expanded="true" aria-controls="collapseStore">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <span>E-Store</span>
+                </a>
+                <div id="collapseStore" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">All Parts:</h6>
+                        <a class="collapse-item" href="{{url('/admin/users')}}">Categories</a>
+                        <a class="collapse-item" href="{{url('/admin/users')}}">Accessories</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
                     aria-expanded="true" aria-controls="collapseUsers">
                     <i class="fa fa-user" aria-hidden="true"></i>
