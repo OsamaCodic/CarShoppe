@@ -55,12 +55,14 @@ Route::group(
     
             // Start Brands routes
                 Route::resource('/brands', BrandController::class);
-                Route::get('/search_brand', 'BrandController@index');
+                // Route::get('/search_brand', 'BrandController@index');
+                Route::GET('/live_search', 'BrandController@brand_table_data');
             // End Brands routes
     
             // Start Types routes
                 Route::resource('/types', TypeController::class);
-                Route::get('/search_type', 'TypeController@index');
+                // Route::get('/search_type', 'TypeController@index');
+                Route::GET('/live_search', 'TypeController@type_table_data');
             // End Types routes
     
         });

@@ -22,10 +22,11 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$brands->count()}})</small></h6>
+                        {{-- <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$brands->count()}})</small></h6> --}}
+                        <h6 class="m-0 font-weight-bold text-primary" id="total_records"></h6>
                     </div>
                     <div class="col-md-4">
-                        <form action="{{url('admin/search_brand')}}" method="get" role="search" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        {{-- <form action="{{url('admin/search_brand')}}" method="get" role="search" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             {{ csrf_field() }}
                             <div class="input-group">
                                 <input type="text" name="search_title" class="form-control bg-white border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -38,7 +39,8 @@
                                     </a>
                                 </div>
                             </div>
-                        </form>
+                        </form> --}}
+                        <input type="text" name="search" id="search" class="form-control" placeholder="Search by title..." />
                     </div>
                 </div>
             </div>
@@ -49,11 +51,11 @@
                             <tr>
                                 <th>
                                     Title
-                                    @if (@$_GET['sortbyTitle'] == "ASC")
+                                    {{-- @if (@$_GET['sortbyTitle'] == "ASC")
                                         <a href="{{url('admin/brands?sortbyTitle=DESC')}}"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a>
                                         @else
                                         <a href="{{url('admin/brands?sortbyTitle=ASC')}}"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
-                                    @endif
+                                    @endif --}}
                                 </th>
                                 <th>Description</th>
                                 <th>Display Order</th>
@@ -61,7 +63,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        {{-- <tbody>
                             @foreach ($brands as $brand)
                                 <tr>
                                     <td>{{$brand->title}}</td>
@@ -73,19 +75,21 @@
                                     </td>
                                 </tr>
                             @endforeach
+                        </tbody> --}}
+                        <tbody>
+                            {{-- Ajax Response render here --}}
                         </tbody>
                     </table>
 
-                    @if ($brands->count() == 0)
+                    {{-- @if ($brands->count() == 0)
                         <p class="text-danger text-center">No brands founds...</p>
-                    @endif
+                    @endif --}}
                 </div>
 
-                @if ($brands->count() > 0)
-                    {{-- {{ $users->links() }} --}}
+                {{-- @if ($brands->count() > 0)
                     <p>Showing {!! $brands->firstItem() !!} to {!! $brands->lastItem() !!}</p>
                     {{ $brands->links() }}
-                @endif
+                @endif --}}
             </div>
         </div>
     </div>

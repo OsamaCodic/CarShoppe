@@ -14,21 +14,73 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $query = Type::query();
+        // $query = Type::query();
 
-        if (@$_GET['search_title'] && @$_GET['search_title'] !="")
-        {
-            $query->where('title','LIKE','%'.$_GET['search_title'].'%');
-        }
+        // if (@$_GET['search_title'] && @$_GET['search_title'] !="")
+        // {
+        //     $query->where('title','LIKE','%'.$_GET['search_title'].'%');
+        // }
         
-        if (@$_GET['sortbyTitle'] && @$_GET['sortbyTitle'] !="")
-        {
-            $query->orderBy('title', @$_GET['sortbyTitle']);
-        }
+        // if (@$_GET['sortbyTitle'] && @$_GET['sortbyTitle'] !="")
+        // {
+        //     $query->orderBy('title', @$_GET['sortbyTitle']);
+        // }
         
-        $types = $query->orderBy('display_order')->simplepaginate(5);   
+        // $types = $query->orderBy('display_order')->simplepaginate(5);   
     
-        return view('types.index', compact('types'));
+        // return view('types.index', compact('types'));
+        return view('types.index');
+    }
+
+    function type_table_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+            
+            if($query != '')
+            {
+                $data = Type::where('title','LIKE', '%'.$query.'%')->get();   
+            }
+            else
+            {
+                $data = Type::orderBy('display_order', 'ASC')->get();
+            }
+
+            $total_row = $data->count();
+            
+            if($total_row > 0)
+            {
+                foreach($data as $row)
+                {
+                    $output .= '
+                    <tr>
+                        <td>'.$row->title.'</td>
+                        <td>'.$row->description.'</td>
+                        <td>'.$row->display_order.'</td>
+                        <td>
+                            <i class="fa fa-trash zoom" onclick="delete_type('.$row->id.',`'.$row->title.'`)" aria-hidden="true" style="color: #bf1616"></i>
+                            <a href="'.url('admin/types/'.$row->id.'/edit').'" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706"></i></a>
+                        </td>
+                    </tr>';
+                }
+            }
+            else
+            {
+                $output = '
+                <tr>
+                    <td class="text-danger" align="center" colspan="5">Searched type not Found!</td>
+                </tr>';
+            }
+            
+            $data = array(
+            'table_data'  => $output,
+            'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
     }
 
     /**

@@ -7,6 +7,29 @@
             }
         });
 
+        // live search response
+            fetch_customer_data();
+            function fetch_customer_data(query = '')
+            {
+                $.ajax({
+                    url:"{{ url('admin/live_search') }}",
+                    method:'GET',
+                    data:{query:query},
+                    dataType:'json',
+                    success:function(data)
+                    {
+                        $('tbody').html(data.table_data);
+                        $('#total_records').text('Total Result: ' + data.total_data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#search', function(){
+                var query = $(this).val();
+                fetch_customer_data(query);
+            });
+        // live search response
+
         // Type Create/Update
             $("#typeForm").validate({
                 errorClass: "jqError fail-alert",
@@ -63,14 +86,14 @@
     });
 
     //Type delete
-        function delete_type(obj)
+        function delete_type(id, title)
         {
             var url = "{{ url('admin/types') }}";
-            var dltUrl = url+"/"+obj.id;
+            var dltUrl = url+"/"+id;
         
             swal({
                     title: "Do you want to delete this Type?",
-                    text: obj.title,
+                    text: title,
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -100,7 +123,7 @@
                     })
                 }
                 else {
-                    swal("Cancelled", "Your type is safe :)", "error");
+                    swal("Cancelled", "Your Brand is safe :)", "error");
                 }
             });
         }

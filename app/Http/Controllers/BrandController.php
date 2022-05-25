@@ -16,19 +16,71 @@ class BrandController extends Controller
     {
         $query = Brand::query();
 
-        if (@$_GET['search_title'] && @$_GET['search_title'] !="")
-        {
-            $query->where('title','LIKE','%'.$_GET['search_title'].'%');
-        }
+        // if (@$_GET['search_title'] && @$_GET['search_title'] !="")
+        // {
+        //     $query->where('title','LIKE','%'.$_GET['search_title'].'%');
+        // }
 
-        if (@$_GET['sortbyTitle'] && @$_GET['sortbyTitle'] !="")
-        {
-            $query->orderBy('title', @$_GET['sortbyTitle']);
-        }
+        // if (@$_GET['sortbyTitle'] && @$_GET['sortbyTitle'] !="")
+        // {
+        //     $query->orderBy('title', @$_GET['sortbyTitle']);
+        // }
         
-        $brands = $query->orderBy('display_order')->simplepaginate(5);   
+        // $brands = $query->orderBy('display_order')->simplepaginate(5);   
     
-        return view('brands.index', compact('brands'));
+        // return view('brands.index', compact('brands'));
+        return view('brands.index');
+    }
+
+    function brand_table_data(Request $request)
+    {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+            
+            if($query != '')
+            {
+                $data = Brand::where('title','LIKE', '%'.$query.'%')->get();   
+            }
+            else
+            {
+                $data = Brand::orderBy('display_order', 'ASC')->get();
+            }
+
+            $total_row = $data->count();
+            
+            if($total_row > 0)
+            {
+                foreach($data as $row)
+                {
+                    $output .= '
+                    <tr>
+                        <td>'.$row->title.'</td>
+                        <td>'.$row->description.'</td>
+                        <td>'.$row->display_order.'</td>
+                        <td>
+                            <i class="fa fa-trash zoom" onclick="delete_brand('.$row->id.',`'.$row->title.'`)" aria-hidden="true" style="color: #bf1616"></i>
+                            <a href="'.url('admin/brands/'.$row->id.'/edit').'" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706"></i></a>
+                        </td>
+                    </tr>';
+                }
+            }
+            else
+            {
+                $output = '
+                <tr>
+                    <td class="text-danger" align="center" colspan="5">Searched brand not Found!</td>
+                </tr>';
+            }
+            
+            $data = array(
+            'table_data'  => $output,
+            'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
     }
 
     /**

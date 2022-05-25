@@ -7,6 +7,30 @@
             }
         });
 
+
+        // live search response
+            fetch_customer_data();
+            function fetch_customer_data(query = '')
+            {
+                $.ajax({
+                    url:"{{ url('admin/live_search') }}",
+                    method:'GET',
+                    data:{query:query},
+                    dataType:'json',
+                    success:function(data)
+                    {
+                        $('tbody').html(data.table_data);
+                        $('#total_records').text('Total Result: ' + data.total_data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#search', function(){
+                var query = $(this).val();
+                fetch_customer_data(query);
+            });
+        // live search response
+
         // Brand Create/Update
             $("#brandForm").validate({
                 errorClass: "jqError fail-alert",
@@ -63,14 +87,14 @@
     });
 
     //Brand delete
-        function delete_brand(obj)
+        function delete_brand(id, title)
         {
             var url = "{{ url('admin/brands') }}";
-            var dltUrl = url+"/"+obj.id;
+            var dltUrl = url+"/"+id;
         
             swal({
                     title: "Do you want to delete this Brand?",
-                    text: obj.title,
+                    text: title,
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
