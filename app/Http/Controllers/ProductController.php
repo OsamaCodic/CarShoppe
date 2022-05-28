@@ -21,8 +21,6 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-       
-
         if (@$_GET['status'] && @$_GET['status'] !="")
         {
             $query->where('status', @$_GET['status']);
@@ -76,8 +74,8 @@ class ProductController extends Controller
         $products = $query->orderBy('display_order')->simplepaginate(5);
         
         
-        $brands = Brand::orderBy('display_order')->get();
-        $types = Type::orderBy('display_order')->get();
+        $brands = Brand::where('is_vehicle', true)->orderBy('display_order')->get();
+        $types = Type::where('is_vehicle', true)->orderBy('display_order')->get();
 
         return view('products.index', compact('products', 'brands', 'types'));
     }
@@ -96,8 +94,8 @@ class ProductController extends Controller
         $form_btn_icon = 'fa fa-plus';
         $form_btn_class = 'btn-success';
 
-        $brands = Brand::orderBy('display_order')->get();
-        $types = Type::orderBy('display_order')->get();
+        $brands = Brand::where('is_vehicle', true)->orderBy('display_order')->get();
+        $types = Type::where('is_vehicle', true)->orderBy('display_order')->get();
 
         return view('products.create', compact(
             'card_bg',
@@ -191,8 +189,8 @@ class ProductController extends Controller
 
         $product = Product::get()->where('id', $id)->first();
         
-        $brands = Brand::orderBy('display_order')->get();
-        $types = Type::orderBy('display_order')->get();
+        $brands = Brand::where('is_vehicle', true)->orderBy('display_order')->get();
+        $types = Type::where('is_vehicle', true)->orderBy('display_order')->get();
 
 
         return view('products.create', compact(

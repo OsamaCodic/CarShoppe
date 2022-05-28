@@ -55,16 +55,21 @@ Route::group(
     
             // Start Brands routes
                 Route::resource('/brands', BrandController::class);
+                // Route::resource('/accessory_brands', AccessoryBrandController::class);
                 // Route::get('/search_brand', 'BrandController@index');
-                Route::GET('/live_search', 'BrandController@brand_table_data');
+                Route::GET('/brands_live_search', 'BrandController@brand_table_data');
             // End Brands routes
     
             // Start Types routes
                 Route::resource('/types', TypeController::class);
+                // Route::resource('/accessory_categories', AccessoryTypeController::class);
                 // Route::get('/search_type', 'TypeController@index');
-                Route::GET('/live_search', 'TypeController@type_table_data');
+                Route::GET('/types_live_search', 'TypeController@type_table_data');
             // End Types routes
     
+            //Start E-Store
+                Route::resource('/accessories', AccessoryController::class);
+            //End E-Store
         });
     
     }

@@ -104,8 +104,9 @@
                 <div id="collapseStore" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">All Parts:</h6>
-                        <a class="collapse-item" href="{{url('/admin/users')}}">Categories</a>
-                        <a class="collapse-item" href="{{url('/admin/users')}}">Accessories</a>
+                        <a class="collapse-item" href="{{url('/admin/accessory_brands')}}">Brand</a>
+                        <a class="collapse-item" href="{{url('/admin/accessory_categories')}}">Categories</a>
+                        <a class="collapse-item" href="{{url('/admin/accessories')}}">Accessories</a>
                     </div>
                 </div>
             </li>

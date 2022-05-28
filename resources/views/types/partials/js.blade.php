@@ -8,11 +8,11 @@
         });
 
         // live search response
-            fetch_customer_data();
-            function fetch_customer_data(query = '')
+            fetch_type_data();
+            function fetch_type_data(query = '')
             {
                 $.ajax({
-                    url:"{{ url('admin/live_search') }}",
+                    url:"{{ url('admin/types_live_search') }}",
                     method:'GET',
                     data:{query:query},
                     dataType:'json',
@@ -26,7 +26,7 @@
 
             $(document).on('keyup', '#search', function(){
                 var query = $(this).val();
-                fetch_customer_data(query);
+                fetch_type_data(query);
             });
         // live search response
 

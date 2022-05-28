@@ -41,11 +41,11 @@ class TypeController extends Controller
             
             if($query != '')
             {
-                $data = Type::where('title','LIKE', '%'.$query.'%')->get();   
+                $data = Type::where('title','LIKE', '%'.$query.'%')->where('is_vehicle', true)->orderBy('display_order')->get();   
             }
             else
             {
-                $data = Type::orderBy('display_order', 'ASC')->get();
+                $data = Type::where('is_vehicle', true)->orderBy('display_order')->get();
             }
 
             $total_row = $data->count();

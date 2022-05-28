@@ -9,11 +9,11 @@
 
 
         // live search response
-            fetch_customer_data();
-            function fetch_customer_data(query = '')
+            fetch_brand_data();
+            function fetch_brand_data(query = '')
             {
                 $.ajax({
-                    url:"{{ url('admin/live_search') }}",
+                    url:"{{ url('admin/brands_live_search') }}",
                     method:'GET',
                     data:{query:query},
                     dataType:'json',
@@ -27,7 +27,7 @@
 
             $(document).on('keyup', '#search', function(){
                 var query = $(this).val();
-                fetch_customer_data(query);
+                fetch_brand_data(query);
             });
         // live search response
 

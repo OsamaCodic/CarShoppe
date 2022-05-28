@@ -70,8 +70,8 @@ class FrontPagesController extends Controller
     public function home(Request $request) {
 
         
-        $brands = Brand::orderBy('display_order')->get();
-        $types = Type::orderBy('display_order')->get();
+        $brands = Brand::where('is_vehicle', true)->orderBy('display_order')->get();
+        $types = Type::where('is_vehicle', true)->orderBy('display_order')->get();
         $latest_products = Product::where('model', now()->year)->get();
 
         return view('frontend_layout.dashboard', compact('types', 'brands', 'latest_products'));
@@ -113,8 +113,8 @@ class FrontPagesController extends Controller
 
     public function listPage() {
         
-        $brands = Brand::orderBy('display_order')->take(5)->get();
-        $types = Type::orderBy('display_order')->get();
+        $brands = Brand::where('is_vehicle', true)->orderBy('display_order')->take(5)->get();
+        $types = Type::where('is_vehicle', true)->orderBy('display_order')->get();
         $products = Product::where('status', @$_GET['status'])->orderBy('display_order')->paginate(5);
 
         return view('frontend_layout.list', compact(
@@ -136,8 +136,8 @@ class FrontPagesController extends Controller
     
     public function sell_product() {
 
-        $brands = Brand::orderBy('display_order')->get();
-        $types = Type::orderBy('display_order')->get();
+        $brands = Brand::where('is_vehicle', true)->orderBy('display_order')->get();
+        $types = Type::where('is_vehicle', true)->orderBy('display_order')->get();
         return view('frontend_layout.sell_product_form', compact('brands', 'types'));
     
     }

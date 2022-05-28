@@ -41,11 +41,11 @@ class BrandController extends Controller
             
             if($query != '')
             {
-                $data = Brand::where('title','LIKE', '%'.$query.'%')->get();   
+                $data = Brand::where('title','LIKE', '%'.$query.'%')->where('is_vehicle', true)->orderBy('display_order')->get();   
             }
             else
             {
-                $data = Brand::orderBy('display_order', 'ASC')->get();
+                $data = Brand::where('is_vehicle', true)->orderBy('display_order')->get();
             }
 
             $total_row = $data->count();

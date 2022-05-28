@@ -1,7 +1,6 @@
 <script>
     $(document).ready(function () {
 
-        
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -14,7 +13,7 @@
         });
 
         // Product Create/Update
-            $("#productForm").validate({
+            $("#accessoryForm").validate({
                 errorClass: "jqError fail-alert",
                 validClass: "valid success-alert",
 
@@ -25,58 +24,40 @@
                     type_id: {
                         required: true
                     },
-                    name: {
-                        required: true
-                    },
-                    model: {
-                        required: true,
-                        maxlength:4,
-                        minlength:4
-                    },
-                    display_order: {
-                        required: true
-                    },
-                    fuel_average: {
-                        required: true
-                    },
-                    engine_cc: {
-                        required: true
-                    },
-                    varients: {
+                    title: {
                         required: true
                     },
                     price: {
                         required: true
                     },
-                    transmission: {
+                    tax: {
                         required: true
                     },
-                    gears: {
+                    colours: {
                         required: true
                     },
-                    no_of_doors: {
+                    display_order: {
                         required: true
                     },
-                    dimensions: {
+                    release_date: {
                         required: true
-                    },
+                    }
                 },
                 messages: {
                     brand: {
-                        required: "Product Brand must be selected!",
-                        maxlength: "Year digits should be 4!",
+                        required: "Accessory must have brand!",
                     },
                     type: {
-                        required: "Type must be selected!",
+                        required: "Please select acccessory category!",
                     },
-                    name: {
-                        required: "Please enter your product name!",
+                    title: {
+                        required: "Please acccessory title is important!",
                     },
-                    model: {
-                        required: "Model should be given!",
+                    price: {
+                        required: "price should be given!",
                     },
-                    varients: {
-                        required: "At least one varient is required!",
+                    tax: {
+                        required: "At least one tax should apply!",
                     }
                 },
 
@@ -86,8 +67,8 @@
                     $('#submitBtn').html("Please wait...")
                    
                     $.ajax({
-                        url : $('#productForm').attr('action'),
-                        type: $('#productForm').attr('method'),
+                        url : $('#accessoryForm').attr('action'),
+                        type: $('#accessoryForm').attr('method'),
 
                         dataType: "JSON",
                         data: new FormData(form),
@@ -113,92 +94,14 @@
         // Product Create/Update
     });
 
-    var transmission = $('#transmission').val()
-    if(transmission == "Automatic")
-    {
-        if ($( "#selected_transmission" ).hasClass('col-md-3'))
-        {
-            $( "#selected_transmission" ).removeClass( 'col-md-3');
-        }
-        else
-        {
-            $( "#selected_transmission" ).addClass( 'col-md-6');
-        }
-        $("#select_gears").slideUp('fast')
-    }
-    else if(transmission == "Mannual")
-    { 
-        if ($( "#selected_transmission" ).hasClass('col-md-6'))
-        {
-            $( "#selected_transmission" ).removeClass( 'col-md-6');
-        }
-        else
-        {
-            $( "#selected_transmission" ).addClass( 'col-md-3');
-        }
-        $("#select_gears").slideDown('fast')
-    }
-    else
-    {
-        if ($( "#selected_transmission" ).hasClass('col-md-3'))
-        {
-            $( "#selected_transmission" ).removeClass( 'col-md-3');
-        }
-        else
-        {
-            $( "#selected_transmission" ).addClass( 'col-md-6');
-        }
-        $("#select_gears").slideUp('fast')
-    }
-
-    $('#transmission').on('change', function(){
-        // Radio toggles will show base on Dropdown Change
-        if(this.value == "Automatic")
-        {
-            if ($( "#selected_transmission" ).hasClass('col-md-3'))
-            {
-                $( "#selected_transmission" ).removeClass( 'col-md-3');
-            }
-            else
-            {
-                $( "#selected_transmission" ).addClass( 'col-md-6');
-            }
-            $("#select_gears").slideUp('fast')
-        }
-        else if(this.value == "Mannual")
-        { 
-            if ($( "#selected_transmission" ).hasClass('col-md-6'))
-            {
-                $( "#selected_transmission" ).removeClass( 'col-md-6');
-            }
-            else
-            {
-                $( "#selected_transmission" ).addClass( 'col-md-3');
-            }
-            $("#select_gears").slideDown('fast')
-        }
-        else
-        {
-            if ($( "#selected_transmission" ).hasClass('col-md-3'))
-            {
-                $( "#selected_transmission" ).removeClass( 'col-md-3');
-            }
-            else
-            {
-                $( "#selected_transmission" ).addClass( 'col-md-6');
-            }
-            $("#select_gears").slideUp('fast')
-        }
-    });
-
     //Product delete
-        function delete_product(obj)
+        function delete_accessory(obj)
         {
-            var url = "{{ url('admin/products') }}";
+            var url = "{{ url('admin/accessories') }}";
             var dltUrl = url+"/"+obj.id;
         
             swal({
-                    title: "Do you want to delete this Product?",
+                    title: "Do you want to delete this Accessory?",
                     text: obj.name,
                     icon: "warning",
                     buttons: true,
@@ -216,8 +119,8 @@
                     })
                     .done(function(response) {
                         swal({
-                            title: "Product deleted!",
-                            text: "Product deleted permanently",
+                            title: "Accessory deleted!",
+                            text: "Accessory deleted permanently",
                             icon: "success",
                             timer: 5000,
                             buttons: false,
@@ -229,42 +132,12 @@
                     })
                 }
                 else {
-                    swal("Cancelled", "Your Product is safe :)", "error");
+                    swal("Cancelled", "Your accessory is safe :)", "error");
                 }
             });
         }
     //Product delete
 
-    //Product Features Create
-        $('#featuresForm').on('submit', function (e) {
-            e.preventDefault();
-            $form = $(this);
-            $.ajax({
-                url : $(this).attr('action'),
-                type: $(this).attr('method'),
-                data: $form.serialize(),
-            })
-            .done(function(response) {
-                swal({
-                    text: response.status,
-                    timer: 5000,
-                    icon:"success",
-                    showConfirmButton: false,
-                    type: "error"
-                })
-                setTimeout(function(){
-                    location.href = response.redirect_url;
-                }, 1000);
-            })
-        });
-    //Product Features Create
-
-
-    $('#varients').keydown(function (e) { 
-        if (e.keyCode == 13) {
-            $('#varients').val($('#varients').val() + ', ');
-        }
-    });
     $('#colours').keydown(function (e) { 
         if (e.keyCode == 13) {
             $('#colours').val($('#colours').val() + ', ');
@@ -322,13 +195,13 @@
             evt.preventDefault();
             var delete_rows_arr = [];
 
-            $("#productTable input:checkbox:checked").each(function()
+            $("#accessoryTable input:checkbox:checked").each(function()
             {
                 delete_rows_arr.push($(this).val());
             });
 
             swal({
-                title: "Are you sure you want to delete selected Products?",
+                title: "Are you sure you want to delete selected Accessories?",
                 text: "If you delete this, it will be delete permanently!",
                 icon: "warning",
                 buttons: true,
@@ -337,7 +210,7 @@
             .then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: "{{ url('admin/products/delete_selected_rows') }}",
+                        url: "{{ url('admin/accessories/delete_selected_rows') }}",
                         type:"POST",
                         data:{
                             delete_rows_arr:delete_rows_arr,
@@ -345,7 +218,7 @@
                     })
                     .done(function(response) {
                         swal({
-                            title: "Selected Products deleted!",
+                            title: "Selected accessories deleted!",
                             text: "Records deleted permanently",
                             icon: "success",
                             timer: 5000,
@@ -358,7 +231,7 @@
                     })
                 }
                 else {
-                    swal("Cancelled", "Your products is safe :)", "error");
+                    swal("Cancelled", "Your accessories is safe :)", "error");
                 }
             });
         });
