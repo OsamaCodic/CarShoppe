@@ -65,9 +65,12 @@ Route::group(
     
             // Start Types routes
                 Route::resource('/types', TypeController::class);
-                // Route::resource('/accessory_categories', AccessoryTypeController::class);
                 // Route::get('/search_type', 'TypeController@index');
                 Route::GET('/types_live_search', 'TypeController@type_table_data');
+
+                //Accessories
+                Route::resource('/accessory_categories', AccessoryTypeController::class);
+                Route::GET('/accessory_types_live_search', 'AccessoryTypeController@accessory_type_table_data');
             // End Types routes
     
             //Start E-Store

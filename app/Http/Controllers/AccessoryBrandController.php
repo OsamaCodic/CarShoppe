@@ -16,21 +16,6 @@ class AccessoryBrandController extends Controller
      */
     public function index()
     {
-        $query = Brand::query();
-
-        // if (@$_GET['search_title'] && @$_GET['search_title'] !="")
-        // {
-        //     $query->where('title','LIKE','%'.$_GET['search_title'].'%');
-        // }
-
-        // if (@$_GET['sortbyTitle'] && @$_GET['sortbyTitle'] !="")
-        // {
-        //     $query->orderBy('title', @$_GET['sortbyTitle']);
-        // }
-        
-        // $brands = $query->orderBy('display_order')->simplepaginate(5);   
-    
-        // return view('brands.index', compact('brands'));
         return view('accessory_brands.index');
     }
 
