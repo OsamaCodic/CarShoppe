@@ -66,7 +66,12 @@
                     $.ajax({
                         url : $('#brandForm').attr('action'),
                         type: $('#brandForm').attr('method'),
-                        data: $('#brandForm').serialize(),
+
+                        dataType: "JSON",
+                        data: new FormData(form),
+                        processData: false,
+                        contentType: false,
+                        
                         
                         success: function(response){
                             swal({
@@ -129,6 +134,31 @@
             });
         }
     //Brand delete
+
+    //File upload Validation and preview
+        function previewImages() {
+
+            var $preview = $('#preview').empty();
+            if (this.files) $.each(this.files, readAndPreview);
+
+            function readAndPreview(i, file) {
+
+            if (!/\.(jpe?g|png|gif)$/i.test(file.name)){
+                return alert(file.name +" is not an image");
+            } // else...
+
+            var reader = new FileReader();
+
+            $(reader).on("load", function() {
+                $preview.append($("<img/>", {src:this.result, height:100}));
+            });
+
+            reader.readAsDataURL(file);
+
+            }
+        }
+        $('#file-input').on("change", previewImages);
+    //File upload Validation and preview
     
     
     // CKEDITOR.replace( 'description' ); // Textarea Editor

@@ -149,20 +149,25 @@
             <div class="form-group">
                 <label for="dimensions">Dimension (ft)</label>
                 <div class="row">
+
+                    <?php
+                        @$dimensionsArray = explode (" x ", @$product->dimensions);    
+                    ?>
+
                     <div class="col">
-                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Length">
+                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" value="{{@$dimensionsArray[0]}}" placeholder="Length">
                     </div>
                     
                     <strong class="mt-1">x</strong>
 
                     <div class="col">
-                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Width">
+                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" value="{{@$dimensionsArray[1]}}" placeholder="Width">
                     </div>
 
                     <strong class="mt-1">x</strong>
                     
                     <div class="col">
-                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Height">
+                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" value="{{@$dimensionsArray[2]}}" placeholder="Height">
                     </div>
                 </div>
             </div>

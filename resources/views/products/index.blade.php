@@ -21,10 +21,10 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$products->count()}})</small></h6>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <form action="{{url('admin/search_product')}}" method="get" role="search" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             {{ csrf_field() }}
                             <div class="input-group">

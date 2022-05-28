@@ -59,7 +59,7 @@
                                 </th>
                                 <th>Description</th>
                                 <th>Display Order</th>
-                                {{-- <th>Logo</th> --}}
+                                <th>Logo</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

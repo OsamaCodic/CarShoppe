@@ -21,10 +21,10 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$accessories->count()}})</small></h6>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <form action="{{url('admin/search_accessory')}}" method="get" role="search" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             {{ csrf_field() }}
                             <div class="input-group">
@@ -62,9 +62,8 @@
                     <table id="accessoryTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Serial No.</th>
                                 <th>Brand</th>
-                                <th>Type</th>
+                                <th>Category</th>
                                 <th>
                                     Name
                                     @if (@$_GET['sortbyName'] == "ASC")
@@ -80,10 +79,12 @@
                         <tbody>
                             @foreach ($accessories as $accessory)
                                 <tr>
-                                    <td>{{$accessory->title}}</td>
-                                    {{-- <td>
-                                        <img src="{{asset('storage')}}/images/{{@$product->productImages[0]->image_name}}" height="100%" width="100%" />
-                                    </td> --}}
+                                    <td>{{@$accessory->brand->title}}</td>
+                                    <td>{{@$accessory->type->title}}</td>
+                                    <td>{{@$accessory->title}}</td>
+                                    <td>
+                                        <img src='{{asset('storage')}}/accessories_Images/{{@$accessory->image_name}}' height="100%" width="100%" />
+                                    </td>
                                     <td>
                                         <i class="fa fa-trash zoom delete" onclick="delete_accessory({{$accessory}})" aria-hidden="true" style="color: #bf1616" data-toggle="tooltip" data-placement="top" title="Delete"></i>
                                         <a href="{{ url('admin/accessories/'.$accessory->id.'/edit') }}" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>

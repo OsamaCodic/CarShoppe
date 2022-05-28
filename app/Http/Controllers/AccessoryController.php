@@ -72,8 +72,8 @@ class AccessoryController extends Controller
         $accessories = $query->orderBy('display_order')->simplepaginate(5);
         
         
-        $brands = Brand::orderBy('display_order')->get();
-        $types = Type::orderBy('display_order')->get();
+        $brands = Brand::where('is_vehicle', false)->orderBy('display_order')->get();
+        $types = Type::where('is_vehicle', false)->orderBy('display_order')->get();
 
         return view('accessories.index', compact('accessories', 'brands', 'types'));
     }
@@ -92,8 +92,8 @@ class AccessoryController extends Controller
         $form_btn_icon = 'fa fa-plus';
         $form_btn_class = 'btn-success';
 
-        $brands = Brand::orderBy('display_order')->get();
-        $types = Type::orderBy('display_order')->get();
+        $brands = Brand::where('is_vehicle', false)->orderBy('display_order')->get();
+        $types = Type::where('is_vehicle', false)->orderBy('display_order')->get();
 
         return view('accessories.create', compact(
             'card_bg',
@@ -115,47 +115,38 @@ class AccessoryController extends Controller
      */
     public function store(Request $request)
     {
-        dd("Go to Controller");
-
         $dimensionsStr = implode (" x ", $request->dimensions);
         $request->merge([ 'dimensions' => $dimensionsStr]);
-        $vehicle_serial_number = random_int(100000000, 999999999);
-        $request->merge([ 'serial_nunber' => $vehicle_serial_number]);
 
-        $product = Product::updateOrCreate(['id'=>$request->product_id],$request->except('_token', 'product_id', 'filename'));
-       
-        if($request->file('filename'))
+        if($request->file('filename')) //Upload Image
         {
-            //Remove prevous images
-            ProductImage::where('product_id', $request->product_id)->delete();
-
-            foreach ($request->file('filename') as $image)
+            if ($request->accessory_id != null)
             {
-                $ProductImage = new ProductImage;
+                $image = $request->file('filename');
                 $given_name = null;
                 $name = is_null($given_name) ? uniqid() : $given_name . '-' . rand(1, 6000);
                 $name = $name . '.' . $image->extension();
-                \Storage::disk('public')->putFileAs('images', $image, $name);                
-                $ProductImage->image_name = $name;
-                $ProductImage->product_id = $product->id;
-                $ProductImage->save();
-            }
+                \Storage::disk('public')->putFileAs('accessories_Images', $image, $name);                
+                $request->merge([ 'image_name' => $name]);
+            }   
         }
 
-        if ($request->product_id == null)
+        $accessory = Accessory::updateOrCreate(['id'=>$request->accessory_id],$request->except('_token', 'accessory_id', 'filename'));
+
+        if ($request->accessory_id == null)
         {
             //Create
             return response([
-                'redirect_url' => url('admin/product/'.$product->id.'/features'),
-                'status' => 'New Product created successfully!'
+                'redirect_url' => url('admin/accessories'),
+                'status' => 'New Accessory added successfully!'
             ],200);
         }
         else
         {
             //Update
             return response([
-                'redirect_url' => url('admin/products'),
-                'status' => 'Product Updated successfully!'
+                'redirect_url' => url('admin/accessories'),
+                'status' => 'Accessory Updated successfully!'
             ],200);
         }
     }
@@ -179,7 +170,29 @@ class AccessoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $card_title = 'Edit Accessory';
+        $card_bg = 'bg-warning';
+        $form_action= url('admin/accessories');
+        $form_btn = 'Update';
+        $form_btn_icon = 'fa fa-redo';
+        $form_btn_class = 'btn-warning';
+
+        $accessory = Accessory::get()->where('id', $id)->first();
+        $brands = Brand::where('is_vehicle', false)->orderBy('display_order')->get();
+        $types = Type::where('is_vehicle', false)->orderBy('display_order')->get();
+
+
+        return view('accessories.create', compact(
+            'card_bg',
+            'card_title',
+            'form_action',
+            'form_btn_class',
+            'form_btn_icon',
+            'form_btn',
+            'accessory',
+            'brands',
+            'types'
+        ));
     }
 
     /**
@@ -202,6 +215,14 @@ class AccessoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Accessory::find($id)->delete();
+    }
+
+    public function delete_selected_rows(Request $request)
+    {
+        foreach ($request->delete_rows_arr as $del_row_id)
+        {
+            Accessory::find($del_row_id)->delete();
+        }
     }
 }

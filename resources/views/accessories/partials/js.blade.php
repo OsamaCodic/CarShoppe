@@ -40,7 +40,11 @@
                         required: true
                     },
                     release_date: {
-                        required: true
+                        required: true,
+                        maxlength: 15,
+                    },
+                    delivery_date: {
+                        maxlength: 15,
                     }
                 },
                 messages: {

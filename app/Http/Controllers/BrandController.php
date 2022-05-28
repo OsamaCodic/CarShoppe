@@ -49,7 +49,7 @@ class BrandController extends Controller
             }
 
             $total_row = $data->count();
-            
+
             if($total_row > 0)
             {
                 foreach($data as $row)
@@ -59,6 +59,9 @@ class BrandController extends Controller
                         <td>'.$row->title.'</td>
                         <td>'.$row->description.'</td>
                         <td>'.$row->display_order.'</td>
+                        <td>
+                            <img src='.asset('storage').'/brands_logos/'.@$row->logo.' width="70%" />
+                        </td>
                         <td>
                             <i class="fa fa-trash zoom" onclick="delete_brand('.$row->id.',`'.$row->title.'`)" aria-hidden="true" style="color: #bf1616"></i>
                             <a href="'.url('admin/brands/'.$row->id.'/edit').'" ><i class="fa fa-pencil ml-2 zoom" aria-hidden="true" style="color: #fbb706"></i></a>
@@ -117,12 +120,34 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        Brand::create($request->except('_token'));
+        if($request->file('filename')) //Upload Image
+        {
+            $image = $request->file('filename');
+            $given_name = null;
+            $name = is_null($given_name) ? uniqid() : $given_name . '-' . rand(1, 6000);
+            $name = $name . '.' . $image->extension();
+            \Storage::disk('public')->putFileAs('brands_logos', $image, $name);                
+            $request->merge([ 'logo' => $name]);
+        }
 
-        return response([
-            'redirect_url' => url('admin/brands'),
-            'status' => 'New Brand Created successfully!'
-        ],200);
+        $brand = Brand::updateOrCreate(['id'=>$request->brand_id],$request->except('_token', 'brand_id', 'filename'));
+
+        if ($request->brand == null)
+        {
+            //Create
+            return response([
+                'redirect_url' => url('admin/brands'),
+                'status' => 'New brand created successfully!'
+            ],200);
+        }
+        else
+        {
+            //Update
+            return response([
+                'redirect_url' => url('admin/brands'),
+                'status' => 'Brand Updated successfully!'
+            ],200);
+        }
     }
 
     /**
@@ -146,8 +171,7 @@ class BrandController extends Controller
     {
         $card_title = 'Update Brand';
         $card_bg = 'bg-warning';
-        $form_action= url('admin/brands/'.$id);
-        $form_method= "PUT";
+        $form_action= url('admin/brands');
         $form_btn = 'Update';
         $form_btn_icon = 'fa fa-plus';
         $form_btn_class = 'btn-warning';
@@ -158,7 +182,6 @@ class BrandController extends Controller
             'card_bg',
             'card_title',
             'form_action',
-            'form_method',
             'form_btn_class',
             'form_btn_icon',
             'form_btn',
@@ -175,12 +198,7 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $brand = Brand::find($id);
-        $brand->update($request->except('_token'));
-        return response([
-            'redirect_url' => url('admin/brands'),
-            'status' => 'Brand Updated successfully!'
-        ],200);
+        //
     }
 
     /**

@@ -18,11 +18,11 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="type">Category <span class="red_star">*</span></label>
-                <select class="form-control" name="type_id" id="type">
+                <select class="form-control" name="category_id" id="type">
                     <option value="">--Select--</option>
                     
                     @foreach ($types as $type)
-                        <option value="{{@$type->id}}" {{ @$accessory->type_id == @$type->id ? 'selected' : '' }}>{{$type->title}}</option>
+                        <option value="{{@$type->id}}" {{ @$accessory->category_id == @$type->id ? 'selected' : '' }}>{{$type->title}}</option>
                     @endforeach
                 </select>
             </div>
@@ -40,20 +40,25 @@
             <div class="form-group">
                 <label for="dimensions">Dimension (mm)</label>
                 <div class="row">
+
+                    <?php
+                        @$dimensionsArray = explode (" x ", @$accessory->dimensions);    
+                    ?>
+
                     <div class="col">
-                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Length">
+                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" value="{{@$dimensionsArray[0]}}" placeholder="Length">
                     </div>
                     
                     <strong class="mt-1">x</strong>
 
                     <div class="col">
-                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Width">
+                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" value="{{@$dimensionsArray[1]}}" placeholder="Width">
                     </div>
 
                     <strong class="mt-1">x</strong>
                     
                     <div class="col">
-                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" placeholder="Height">
+                      <input type="number" class="form-control" id="dimensions" name="dimensions[]" value="{{@$dimensionsArray[2]}}" placeholder="Height">
                     </div>
                 </div>
             </div>
@@ -61,12 +66,12 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="display_order">Price <span class="red_star">*</span></label>
-                <input type="number" class="form-control" id="display_order" name="display_order" value="{{@$accessory->display_order}}" maxlength="5" placeholder="Enter accessory list order...">
+                <input type="number" class="form-control" id="display_order" name="price" value="{{@$accessory->display_order}}" maxlength="5" placeholder="Enter accessory list order...">
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label for="weight">Weight (kg)</label>
+                <label for="weight">Weight (Gram)</label>
                 <input type="number" class="form-control" id="weight" name="weight" value="{{@$accessory->weight}}" placeholder="Enter weight...">
             </div>
         </div>
@@ -98,7 +103,6 @@
             <div class="form-group">
                 <label for="gears">Tax <span class="red_star">*</span></label>
                 <select class="form-control" name="tax" id="tax">
-                    <option value="">--Select--</option>
                     <option value="2" {{ @$accessory->tax == 2 ? 'selected' : '' }}>2%</option>
                     <option value="5" {{ @$accessory->tax == 5 ? 'selected' : '' }}>5%</option>
                     <option value="7" {{ @$accessory->tax == 7 ? 'selected' : '' }}>7%</option>
@@ -136,12 +140,25 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="display_order">Delivery date</label>
-                <input type="date" class="form-control" id="release_date" name="release_date" value="{{@$accessory->release_date}}" maxlength="5" placeholder="Enter accessory list order...">
+                <input type="date" class="form-control" id="delivery_date" name="delivery_date" value="{{@$accessory->delivery_date}}" maxlength="5" placeholder="Enter accessory list order...">
             </div>
         </div>
     </div>
     <br>
 
+    <div class="form-group">
+        <label for="">Picture <span class="red_star">*</span></label>
+        <input accept="image/*" id="file-input" type="file" name="filename" class="p-1" @if (@$accessory->image_name == null) required @endif>
+
+        <br>
+
+        @if (@$accessory->image_name != null)      
+            <img src="{{asset('storage')}}/accessories_Images/{{$accessory->image_name}}" height="20%" width="20%" />
+        @endif
+        
+        <div id="preview"></div>
+    </div>
+
     <button type="submit" id="submitBtn" class="btn {{$form_btn_class}} rounded-pill themeBtn zoomBtn"  style="">{{$form_btn}} <i class="fa {{$form_btn_icon}} ml-2" aria-hidden="true"></i></button>
-    <a href="{{url('admin/accessory')}}" type="button" class="btn btn-outline-secondary rounded-pill ml-3 themeBtn zoomCancelBtn">Cancel <i class="fa fa-times ml-2" aria-hidden="true"></i></a>
+    <a href="{{url('admin/accessories')}}" type="button" class="btn btn-outline-secondary rounded-pill ml-3 themeBtn zoomCancelBtn">Cancel <i class="fa fa-times ml-2" aria-hidden="true"></i></a>
 </form>
