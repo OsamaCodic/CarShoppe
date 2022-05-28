@@ -58,6 +58,7 @@
                                     @endif --}}
                                 </th>
                                 <th>Description</th>
+                                <th>Ratting</th>
                                 <th>Display Order</th>
                                 <th>Logo</th>
                                 <th>Actions</th>

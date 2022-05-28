@@ -72,9 +72,9 @@ class FrontPagesController extends Controller
         
         $brands = Brand::where('is_vehicle', true)->orderBy('display_order')->get();
         $types = Type::where('is_vehicle', true)->orderBy('display_order')->get();
-        $latest_products = Product::where('model', now()->year)->get();
+        // $latest_products = Product::where('model', now()->year)->get();
 
-        return view('frontend_layout.dashboard', compact('types', 'brands', 'latest_products'));
+        return view('frontend_layout.dashboard', compact('types', 'brands'));
     
     }
   

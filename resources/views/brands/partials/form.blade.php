@@ -22,7 +22,32 @@
             <input type="number" class="form-control" id="display_order" name="display_order" value="{{@$brand->display_order}}" placeholder="Enter display order...">
         </div>
     </div>
-    
+
+    <div class="form-group row">
+        <label for="rate" class="col-sm-2 col-form-label">Ratting <span class="red_star">*</span></label>
+        <div class="col-sm-4">
+            <select class="form-control" name="rate" id="rate">
+                <option value="">--Select--</option>
+                <option value="1" {{ @$brand->rate == 1 ? 'selected' : '' }}>1 Star</option>
+                <option value="2" {{ @$brand->rate == 2 ? 'selected' : '' }}>2 Star</option>
+                <option value="3" {{ @$brand->rate == 3 ? 'selected' : '' }}>3 Star</option>
+                <option value="4" {{ @$brand->rate == 4 ? 'selected' : '' }}>4 Star</option>
+                <option value="5" {{ @$brand->rate == 5 ? 'selected' : '' }}>5 Star</option>
+                <option value="6" {{ @$brand->rate == 6 ? 'selected' : '' }}>6 Star</option>
+                <option value="7" {{ @$brand->rate == 7 ? 'selected' : '' }}>7 Star</option>
+            </select>
+        </div>
+
+        @if (@$brand->rate != null)
+            <strong class="col-sm-1 col-form-label">Stars</strong>
+            <div class="col-md-4 mt-2">
+                @for ($i = 0; $i < @$brand->rate; $i++)
+                    <li class="list-inline-item selected"><i class="fa fa-star text-primary"></i></li>
+                @endfor
+            </div>
+        @endif
+    </div>
+
     <input type="hidden" name="is_vehicle" value="1">
 
     <div class="form-group">

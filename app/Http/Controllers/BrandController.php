@@ -58,6 +58,7 @@ class BrandController extends Controller
                     <tr>
                         <td>'.$row->title.'</td>
                         <td>'.$row->description.'</td>
+                        <td>'.$row->rate.' <strong class="text-success">Stars</strong> </td>
                         <td>'.$row->display_order.'</td>
                         <td>
                             <img src='.asset('storage').'/brands_logos/'.@$row->logo.' width="70%" />

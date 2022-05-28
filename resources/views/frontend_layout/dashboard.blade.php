@@ -102,7 +102,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section-title">
-                    <h2>Upcoming Cars in {{now()->year}}</h2>
+                    <h2>Popular Brands in {{now()->year}}</h2>
 					<p>Find latest cars in Pakistan 2022 & new car models markets rates with specification only at CarShoppe</p>
 				</div>
 			</div>
@@ -111,37 +111,34 @@
             <!-- offer 01 -->
 			<div class="col-lg-12">
 				<div class="trending-ads-slide">
-                    @foreach ($latest_products as $product)
+                    @foreach ($brands as $brand)
                     
                     
                     <div class="col-sm-12 col-lg-4">
                         <!-- product card -->
                         <div class="product-item bg-light">
-                                <div class="card">
+                                <div class="">
                                     <div class="thumb-content">
                                         <!-- <div class="price">$200</div> -->
                                         <a href="single.html">
-                                            <img class="card-img-top img-fluid" src="{{asset('storage')}}/images/{{@$product->productImages[0]->image_name}}"  alt="Card image cap">
+                                            <img class="card-img-top img-fluid" src="{{asset('storage')}}/brands_logos/{{@$brand->logo}}"  alt="Card image cap">
                                         </a>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="card-title"><a href="single.html">{{$product->name}}</a></h4>
+                                        <h4 class="card-title"><a href="single.html">{{$brand->title}}</a></h4>
                                         <ul class="list-inline product-meta">
                                             <li class="list-inline-item">
-                                                <a href="single.html"><i class="fa fa-folder-open-o"></i>{{$product->brand->title}}</a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#"><i class="fa fa-calendar"></i>{{$product->type->title}}</a>
+                                                <a href="#"><i class="fa fa-calendar"></i>{{$brand->created_at}}</a>
                                             </li>
                                         </ul>
-                                        <p class="card-text">{{$product->type->description}}</p>
+                                        <p class="card-text">{!! $brand->description !!}</p>
                                         <div class="product-ratings">
                                             <ul class="list-inline">
-                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                                <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+
+                                                @for ($i = 0; $i < $brand->rate; $i++)
+                                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                @endfor
+                                                
                                             </ul>
                                         </div>
                                     </div>
