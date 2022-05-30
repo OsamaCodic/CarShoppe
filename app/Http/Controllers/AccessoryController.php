@@ -159,7 +159,8 @@ class AccessoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $accessory = Accessory::get()->where('id', $id)->first();
+        return view('accessories.accessory_details', compact('accessory'));
     }
 
     /**

@@ -120,12 +120,17 @@
                                 <div class="">
                                     <div class="thumb-content">
                                         <!-- <div class="price">$200</div> -->
-                                        <a href="single.html">
+                                        <a href="#">
                                             <img class="card-img-top img-fluid" src="{{asset('storage')}}/brands_logos/{{@$brand->logo}}"  alt="Card image cap">
                                         </a>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="card-title"><a href="single.html">{{$brand->title}}</a></h4>
+                                        <h4 class="card-title"><a href="#">{{$brand->title}}</a></h4>
+                                        <ul class="list-inline product-meta">
+                                            <li class="list-inline-item">
+                                                <a href="#"><i class="fa fa-car"></i>{{$brand->products->count()}}</a>
+                                            </li>
+                                        </ul>
                                         <ul class="list-inline product-meta">
                                             <li class="list-inline-item">
                                                 <a href="#"><i class="fa fa-calendar"></i>{{$brand->created_at}}</a>

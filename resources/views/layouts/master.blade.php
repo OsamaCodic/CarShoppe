@@ -45,7 +45,11 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/front/login')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>FrontEnd</span></a>
+            </li>
             <!-- Heading -->
             <div class="sidebar-heading">
                 Pages
