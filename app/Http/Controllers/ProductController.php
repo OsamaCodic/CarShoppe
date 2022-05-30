@@ -28,42 +28,42 @@ class ProductController extends Controller
 
         if (@$_GET['name'] && @$_GET['name'] !="")
         {
-            $query->where('name','LIKE','%'.$_GET['name'].'%');
+            $query->orwhere('name','LIKE','%'.$_GET['name'].'%');
         }
         
         if (@$_GET['low_price'] && @$_GET['high_price'] && @$_GET['low_price'] !="" && @$_GET['high_price'] !="")
         {
-            $query->whereBetween('price', [$_GET['low_price'], $_GET['high_price']]);
+            $query->orWhereBetween('price', [$_GET['low_price'], $_GET['high_price']]);
         }
         
         if (@$_GET['brand_id'] && @$_GET['brand_id'] !="")
         {
-            $query->where('brand_id',$_GET['brand_id']);
+            $query->orwhere('brand_id',$_GET['brand_id']);
         }
         
         if (@$_GET['type_id'] && @$_GET['type_id'] !="")
         {
-            $query->where('type_id',$_GET['type_id']);
+            $query->orwhere('type_id',$_GET['type_id']);
         }
 
         if (@$_GET['engine_cc'] && @$_GET['engine_cc'] !="")
         {
-            $query->where('type_id',$_GET['type_id']);
+            $query->orwhere('type_id',$_GET['type_id']);
         }
 
         if (@$_GET['gears'] && @$_GET['gears'] !="")
         {
-            $query->where('gears',$_GET['gears']);
+            $query->orwhere('gears',$_GET['gears']);
         }
         
         if (@$_GET['colours'] && @$_GET['colours'] !="")
         {
-            $query->where('colours',$_GET['colours']);
+            $query->orwhere('colours',$_GET['colours']);
         }
         
         if (@$_GET['model'] && @$_GET['model'] !="")
         {
-            $query->where('colours',$_GET['colours']);
+            $query->orwhere('colours',$_GET['colours']);
         }
         
         if (@$_GET['sortbyName'] && @$_GET['sortbyName'] !="")

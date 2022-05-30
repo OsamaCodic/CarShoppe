@@ -37,7 +37,7 @@
                 <input type="number" name="model" class="form-control" minlength="4" placeholder="Search by Model year">
               </div>
               <div class="col">
-                <input type="text" name="model" class="form-control" placeholder="Search by Colour">
+                <input type="text" name="colours" class="form-control" placeholder="Search by Colour">
               </div>
             </div>
 

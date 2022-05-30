@@ -74,6 +74,8 @@ Route::group(
 
                 Route::resource('/accessories', AccessoryController::class);
                 Route::post('accessories/delete_selected_rows', 'AccessoryController@delete_selected_rows');
+                Route::get('/search_accessory', 'AccessoryController@index');
+                Route::get('/advance_search_accessory', 'AccessoryController@index');
             //End E-Store
         });
     

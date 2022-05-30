@@ -8,36 +8,40 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body ml-3">
+        <div class="modal-body">
             
-          {{-- <form id="advanceSearchForm" action="{{url('admin/advance_search_product')}}" method="get">
+          <form id="advanceSearchForm" action="{{url('admin/advance_search_accessory')}}" method="get">
             {{ csrf_field() }}
             
             <div class="form-row mt-2">
+              <label for="engine_cc" class="form-label p-1">Brand</label>
               <div class="col">
-                <select class="form-control" name="brand_id" id="brand">
-                  <option value="">--Search by Brand--</option>
+                <select class="form-control" name="brand_id" id="brand_id">
+                  <option value="">--Select--</option>
+                  
                   @foreach (@$brands as $brand)
                     <option value="{{@$brand->id}}">{{$brand->title}}</option>
                   @endforeach
                 </select>
               </div>
+            </div>
+
+            <div class="form-row mt-2">
+              <label for="engine_cc" class="form-label p-1">Category</label>
               <div class="col">
-                <select class="form-control" name="brand_id" id="brand">
-                  <option value="">--Search by Type--</option>
+                <select class="form-control" name="type_id" id="type_id">
+                  <option value="">--Select--</option>
+                  
                   @foreach (@$types as $type)
                     <option value="{{@$type->id}}">{{$type->title}}</option>
                   @endforeach
                 </select>
               </div>
             </div>
-            
+
             <div class="form-row mt-2">
               <div class="col">
-                <input type="number" name="model" class="form-control" minlength="4" placeholder="Search by Model year">
-              </div>
-              <div class="col">
-                <input type="text" name="model" class="form-control" placeholder="Search by Colour">
+                <input type="text" name="colours" class="form-control" placeholder="Search by Colour">
               </div>
             </div>
 
@@ -52,35 +56,21 @@
             </div>     
             
             <div class="form-row mt-2">
-              <label for="engine_cc" class="form-label p-1">Search by Engine cc</label>
+              <label for="engine_cc" class="form-label p-1">Discount</label>
               <div class="col">
-                <select class="form-control" name="engine_cc" id="engine_cc">
+                <select class="form-control" name="discount" id="discount">
                   <option value="">--Select--</option>
-                  <option value="660">660</option>
-                  <option value="800">800</option>
-                  <option value="1000">1000</option>
-                  <option value="1300">1300</option>
-                  <option value="1500">1500</option>
-                  <option value="1800">1800</option>
-                  <option value="2000">2000</option>
-                  <option value="2500">2500</option>
-                </select>
-              </div>
-
-              <label for="engine_cc" class="form-label p-1">Gears</label>
-              <div class="col">
-                <select class="form-control" name="gears" id="gears">
-                  <option value="">--Select--</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
+                  <option value="10">10%</option>
+                  <option value="20">20%</option>
+                  <option value="25">25%</option>
+                  <option value="30">30%</option>
+                  <option value="50">50%</option>
+                  <option value="70">70%</option>
+                  <option value="75">75%</option>
                 </select>
               </div>
             </div>
-          </form> --}}
+          </form>
 
         </div>
         <div class="modal-footer">
