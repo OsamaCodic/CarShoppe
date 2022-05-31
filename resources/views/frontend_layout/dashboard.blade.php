@@ -59,10 +59,10 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-12 col-md-12 align-content-center">
-                                    <form>
+                                    <form action="{{url('front/advance_search_product')}}" method="get">
                                         <div class="form-row">
                                             <div class="form-group col-md-3">
-                                                <select class="w-100 form-control mt-lg-1 mt-md-2">
+                                                <select name="brand_id" class="w-100 form-control mt-lg-1 mt-md-2">
                                                     <option>Brand</option>
                                                     @foreach ($brands as $brand)
                                                     <option value="{{$brand->id}}">{{$brand->title}}</option>
@@ -70,7 +70,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-3">
-                                                <select class="w-100 form-control mt-lg-1 mt-md-2">
+                                                <select name="type_id" class="w-100 form-control mt-lg-1 mt-md-2">
                                                     <option>Category</option>
                                                     @foreach ($types as $type)
                                                         <option value="{{$type->id}}">{{$type->title}}</option>
@@ -78,10 +78,8 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <input type="text" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="What are you looking for">
+                                                <input type="text" class="form-control my-2 my-lg-1" id="name" name="name" placeholder="What are you looking for">
                                             </div>
-                                            
-                                            
                                             <div class="form-group col-md-2 align-self-center">
                                                 <button type="submit" class="btn btn-primary">Search Now</button>
                                             </div>
@@ -91,6 +89,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -124,29 +123,31 @@
                                             <img class="card-img-top img-fluid" src="{{asset('storage')}}/brands_logos/{{@$brand->logo}}"  alt="Card image cap">
                                         </a>
                                     </div>
-                                    <div class="card-body">
-                                        <h4 class="card-title"><a href="#">{{$brand->title}}</a></h4>
-                                        <ul class="list-inline product-meta">
-                                            <li class="list-inline-item">
-                                                <a href="#"><i class="fa fa-car"></i>{{$brand->products->count()}}</a>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline product-meta">
-                                            <li class="list-inline-item">
-                                                <a href="#"><i class="fa fa-calendar"></i>{{$brand->created_at}}</a>
-                                            </li>
-                                        </ul>
-                                        <p class="card-text">{!! $brand->description !!}</p>
-                                        <div class="product-ratings">
-                                            <ul class="list-inline">
-
-                                                @for ($i = 0; $i < $brand->rate; $i++)
-                                                    <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-                                                @endfor
-                                                
+                                    <form action="">
+                                        <div class="card-body">
+                                            <h4 class="card-title"><a href="{{url('front/products?searchbyLogo='.$brand->id)}}">{{$brand->title}}</a></h4>
+                                            <ul class="list-inline product-meta">
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="fa fa-car"></i>{{$brand->products->count()}}</a>
+                                                </li>
                                             </ul>
+                                            <ul class="list-inline product-meta">
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="fa fa-calendar"></i>{{$brand->created_at}}</a>
+                                                </li>
+                                            </ul>
+                                            <p class="card-text">{!! $brand->description !!}</p>
+                                            <div class="product-ratings">
+                                                <ul class="list-inline">
+
+                                                    @for ($i = 0; $i < $brand->rate; $i++)
+                                                        <li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+                                                    @endfor
+                                                    
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

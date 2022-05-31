@@ -126,17 +126,15 @@
                                                 <td>transmission</td><td>{{$product->transmission}}</td>
                                             </tr>
 
-                                            <tr>
-                                                <td>Gears</td>
-                                                    <td>
-                                                        @if ($product->gears != null)
+                                            @if ($product->gears != null)
+                                                <tr>
+                                                    <td>Gears</td>
+                                                        <td>
                                                             {{$product->gears}}
-                                                        @else
-                                                            <strong class="text-danger">N/A</strong>
-                                                        @endif
+                                                        </td>
                                                     </td>
-                                                </td>
-                                            </tr>
+                                                </tr>
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

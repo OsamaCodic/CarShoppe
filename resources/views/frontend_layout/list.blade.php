@@ -41,11 +41,18 @@
                 <div class="col-md-12">
                     <!-- Advance Search -->
                     <div class="advance-search">
-                        <form>
+                        <form action="{{url('front/advance_search_product')}}" method="get">
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <input type="text" class="form-control my-2 my-lg-0" id="inputtext4"
                                         placeholder="What brand you looking for">
+
+                                        {{-- <select name="brand_id" class="w-100 form-control mt-lg-1 mt-md-2">
+                                            <option>Brand</option>
+                                            @foreach ($brands as $brand)
+                                            <option value="{{$brand->id}}">{{$brand->title}}</option>
+                                            @endforeach
+                                        </select> --}}
                                 </div>
                                 <div class="form-group col-md-3">
                                     <input type="text" class="form-control my-2 my-lg-0" id="inputCategory4"
@@ -56,7 +63,6 @@
                                         placeholder="Search product">
                                 </div>
                                 <div class="form-group col-md-2">
-
                                     <button type="submit" class="btn btn-primary">Search Now</button>
                                 </div>
                             </div>
@@ -155,6 +161,10 @@
                                     <option value="4">Highest Price</option>
                                 </select>
                             </div>
+
+                            <div class="col-md-6 ">
+                                <a href="{{url('front/products')}}"><button class="btn float-right btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></button></a>
+                            </div>
                         </div>
                     </div>
 
@@ -200,8 +210,11 @@
                             </div>
                         </div>
                     </div>
-                  @endforeach
+                    @endforeach
 
+                    @if ($products->count() == 0)
+                        <p class="text-danger text-center font-weight-bold mt-5">No products founds...</p>
+                    @endif
                     <!-- ad listing list  -->
 
                     <!-- pagination -->

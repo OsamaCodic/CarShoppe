@@ -90,6 +90,9 @@ Route::group(
             Route::get('home', 'FrontPagesController@home');
             Route::get('products', 'FrontPagesController@listPage');
             Route::get('product/{product_id}/details', 'FrontPagesController@productDetails');
+            
+            Route::get('/advance_search_product', 'FrontPagesController@listPage');
+
             Route::get('used_cars', 'FrontPagesController@usedCars');
             Route::get('sellProduct', 'FrontPagesController@sell_product');
             Route::post('store_sell_product', 'FrontPagesController@store_sellproduct');

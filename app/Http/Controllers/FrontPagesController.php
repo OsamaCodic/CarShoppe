@@ -113,9 +113,38 @@ class FrontPagesController extends Controller
 
     public function listPage() {
         
+        $query = Product::query();
+
+        if (@$_GET['searchbyLogo'] && @$_GET['searchbyLogo'] !="")
+        {
+            $query->where('brand_id',$_GET['searchbyLogo']);
+        }
+        
+        if (@$_GET['status'] && @$_GET['status'] !="")
+        {
+            $query->orwhere('status',$_GET['status']);
+        }
+        
+        if (@$_GET['brand_id'] && @$_GET['brand_id'] !="")
+        {
+            $query->orwhere('brand_id',$_GET['brand_id']);
+        }
+
+        if (@$_GET['type_id'] && @$_GET['type_id'] !="")
+        {
+            $query->orwhere('type_id',$_GET['type_id']);
+        }
+        
+        if (@$_GET['name'] && @$_GET['name'] !="" && !empty(@$_GET['name']))
+        {
+            $query->orwhere('name','LIKE','%'.$_GET['name'].'%');
+        }
+
         $brands = Brand::where('is_vehicle', true)->orderBy('display_order')->take(5)->get();
         $types = Type::where('is_vehicle', true)->orderBy('display_order')->get();
-        $products = Product::where('status', @$_GET['status'])->orderBy('display_order')->paginate(5);
+        // $products = Product::where('status', @$_GET['status'])->orderBy('display_order')->paginate(5);
+
+        $products = $query->orderBy('display_order')->paginate(5);
 
         return view('frontend_layout.list', compact(
             'products',

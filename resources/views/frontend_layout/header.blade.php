@@ -27,7 +27,7 @@
                             </a>
                             <!-- Dropdown list -->
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Brands</a>
+                                <a class="dropdown-item" href="{{url('front/home')}}">Brands</a>
                                 <a class="dropdown-item" href="{{url('front/products?status=1')}}">New Cars</a>
                                 <a class="dropdown-item" href="{{url('front/products?status=2')}}">Used cars section</a>
                                 <a class="dropdown-item" href="{{url('front/sellProduct')}}">Sell your car</a>
