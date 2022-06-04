@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Type;
+use App\Models\Product;
 
 class TypeController extends Controller
 {
@@ -54,10 +55,20 @@ class TypeController extends Controller
             {
                 foreach($data as $row)
                 {
+                    if ($row->products->count() > 0)
+                    {
+                        $btnClass="btn-info";
+                    }
+                    else
+                    {
+                        $btnClass="btn-danger";
+                    }
+
                     $output .= '
                     <tr>
                         <td>'.$row->title.'</td>
                         <td>'.$row->description.'</td>
+                        <td><button class="btn btn-sm '.$btnClass.' rounded">'.$row->products->count().'</button></td>
                         <td>'.$row->display_order.'</td>
                         <td>
                             <i class="fa fa-trash zoom" onclick="delete_type('.$row->id.',`'.$row->title.'`)" aria-hidden="true" style="color: #bf1616"></i>
@@ -190,6 +201,17 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
+        $type = Type::where('id', $id)->first();
+        
+        if (@$type->products)
+        {    
+            //Also delete all products related to this type
+            foreach ($type->products as $product)
+            {
+                Product::find($product->id)->delete();
+            }
+        }
+
         Type::find($id)->delete();
     }
 }

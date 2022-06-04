@@ -11,4 +11,9 @@ class Type extends Model
 
     protected $table = "types";
     protected $guarded = [];
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\Product');
+    }
 }

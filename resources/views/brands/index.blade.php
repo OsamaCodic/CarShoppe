@@ -59,6 +59,7 @@
                                 </th>
                                 <th>Description</th>
                                 <th>Ratting</th>
+                                <th>Total products</th>
                                 <th>Display Order</th>
                                 <th>Logo</th>
                                 <th>Actions</th>

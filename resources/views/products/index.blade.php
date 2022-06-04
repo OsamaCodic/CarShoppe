@@ -81,8 +81,8 @@
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{$product->serial_nunber}}</td>
-                                    <td>{{$product->brand->title}}</td>
-                                    <td>{{$product->type->title}}</td>
+                                    <td>{{@$product->brand->title}}</td>
+                                    <td>{{@$product->type->title}}</td>
                                     <td>{{$product->name}}</td>
                                     <td>
                                         <img src="{{asset('storage')}}/images/{{@$product->productImages[0]->image_name}}" height="100%" width="100%" />

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use App\Models\Product;
 
 class BrandController extends Controller
 {
@@ -54,11 +55,21 @@ class BrandController extends Controller
             {
                 foreach($data as $row)
                 {
+                    if ($row->products->count() > 0)
+                    {
+                        $btnClass="btn-info";
+                    }
+                    else
+                    {
+                        $btnClass="btn-danger";
+                    }
+                    
                     $output .= '
                     <tr>
                         <td>'.$row->title.'</td>
                         <td>'.$row->description.'</td>
                         <td>'.$row->rate.' <strong class="text-success">Stars</strong> </td>
+                        <td><button class="btn btn-sm '.$btnClass.' rounded">'.$row->products->count().'</button></td>
                         <td>'.$row->display_order.'</td>
                         <td>
                             <img src='.asset('storage').'/brands_logos/'.@$row->logo.' width="70%" />
@@ -210,6 +221,17 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
+        $brand = Brand::where('id', $id)->first();
+        
+        if (@$brand->products)
+        {    
+            //Also delete all products related to this brand
+            foreach ($brand->products as $product)
+            {
+                Product::find($product->id)->delete();
+            }
+        }
+
         Brand::find($id)->delete();
     }
 

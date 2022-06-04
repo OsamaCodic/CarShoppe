@@ -58,6 +58,7 @@
                                     @endif --}}
                                 </th>
                                 <th>Description</th>
+                                <th>Total products</th>
                                 <th>Display Order</th>
                                 <th>Actions</th>
                             </tr>
