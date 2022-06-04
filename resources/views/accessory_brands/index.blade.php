@@ -58,8 +58,8 @@
                                     @endif --}}
                                 </th>
                                 <th>Description</th>
+                                <th>Total accessories</th>
                                 <th>Display Order</th>
-                                {{-- <th>Logo</th> --}}
                                 <th>Actions</th>
                             </tr>
                         </thead>

@@ -88,7 +88,7 @@
     //Type delete
         function delete_type(id, title)
         {
-            var url = "{{ url('admin/types') }}";
+            var url = "{{ url('admin/accessory_categories') }}";
             var dltUrl = url+"/"+id;
         
             swal({
@@ -110,8 +110,8 @@
                     })
                     .done(function(response) {
                         swal({
-                            title: "Type deleted!",
-                            text: "Type deleted permanently",
+                            title: "Category deleted!",
+                            text: "Category deleted permanently",
                             icon: "success",
                             timer: 5000,
                             buttons: false,
@@ -123,7 +123,7 @@
                     })
                 }
                 else {
-                    swal("Cancelled", "Your Brand is safe :)", "error");
+                    swal("Cancelled", "Your Category is safe :)", "error");
                 }
             });
         }

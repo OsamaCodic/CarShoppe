@@ -17,8 +17,8 @@ class Brand extends Model
         return $this->hasMany('App\Models\Product');
     }
 
-    public function Accessory()
+    public function accessories()
     {
-        return $this->hasMany('App\Models\Product');
+        return $this->hasMany('App\Models\Accessory');
     }
 }

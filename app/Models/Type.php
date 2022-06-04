@@ -16,4 +16,9 @@ class Type extends Model
     {
         return $this->hasMany('App\Models\Product');
     }
+    
+    public function accessories()
+    {
+        return $this->hasMany('App\Models\Accessory', 'category_id');
+    }
 }

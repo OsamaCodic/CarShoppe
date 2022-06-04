@@ -89,7 +89,7 @@
     //Brand delete
         function delete_brand(id, title)
         {
-            var url = "{{ url('admin/brands') }}";
+            var url = "{{ url('admin/accessory_brands') }}";
             var dltUrl = url+"/"+id;
         
             swal({
