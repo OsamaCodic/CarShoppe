@@ -148,7 +148,8 @@ class FrontPagesController extends Controller
 
         return view('frontend_layout.list', compact(
             'products',
-            'brands'
+            'brands',
+            'types'
         ));
     
     }

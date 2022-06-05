@@ -242,6 +242,7 @@ class ProductController extends Controller
         $form_btn = 'DONE';
         $form_btn_icon = 'fa fa-plus';
         $form_btn_class = 'btn-outline-info';
+        $toggleColor = '#36b9cc';
 
         return view('products.features', compact(
             'card_bg',
@@ -252,19 +253,56 @@ class ProductController extends Controller
             'form_btn_icon',
             'form_btn',
             'features_list',
-            'product'
+            'product',
+            'toggleColor'
+        ));
+    }
+
+
+    public function edit_features($id)
+    {
+        $features_list = Features::all();
+        $product = Product::where('id', $id)->first();
+        
+        $card_title = 'Edit Features';
+        $card_bg = 'bg-warning';
+        $form_action= url('admin/product_features');
+        $form_method="POST";
+        $form_btn = 'Update';
+        $form_btn_icon = 'fa fa-redo';
+        $form_btn_class = 'btn-outline-warning';
+        $toggleColor = '#f6c23e';
+
+        return view('products.features', compact(
+            'card_bg',
+            'card_title',
+            'form_action',
+            'form_method',
+            'form_btn_class',
+            'form_btn_icon',
+            'form_btn',
+            'features_list',
+            'product',
+            'toggleColor'
         ));
     }
 
     public function store_features(Request $request)
     {
+        $product = Product::where('id', $request->product_id)->first();
+        
+        if ($product->productFeatures->count() > 0)
+        {
+            # Delete old features update new features
+            ProductFeature::where('product_id', $request->product_id)->delete();
+        }
+
         foreach ($request->feature as $id) {
             $product_features[] = ProductFeature::create([
                 'product_id' => $request->product_id,
                 'feature_id' => $id
             ]);
         }
-        $product = Product::where('id', $request->product_id)->first();
 
         return response([
             'redirect_url' => url('admin/products'),

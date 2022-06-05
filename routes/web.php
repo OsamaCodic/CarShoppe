@@ -47,6 +47,7 @@ Route::group(
                 Route::resource('/products', ProductController::class);
                 
                 Route::get('product/{id}/features', 'ProductController@product_features');
+                Route::get('product/{id}/edit_features', 'ProductController@edit_features');
                 Route::post('product_features', 'ProductController@store_features');
                 Route::post('products/delete_selected_rows', 'ProductController@delete_selected_rows');
                 Route::get('/search_product', 'ProductController@index');

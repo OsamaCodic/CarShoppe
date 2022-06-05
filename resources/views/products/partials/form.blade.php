@@ -2,6 +2,14 @@
 
     <input type="hidden"  id="" name="product_id" value="{{@$product->id}}" placeholder="">
 
+    @if (@$product->id)
+        <div class="row">
+            <div class="col-md-12">
+                <a href="{{url('admin/product/'.@$product->id.'/edit_features')}}" type="button" class="btn btn-info mb-3 float-right">Edit Features</a>
+            </div>
+        </div>
+    @endif
+    
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -39,7 +47,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="model">Model <span class="red_star">*</span></label>
-                <input type="number" class="form-control" id="model" name="model" value="{{@$product->model}}" placeholder="2015...">
+                <input type="number" min="1885" max="2022" class="form-control" id="model" name="model" value="{{@$product->model}}" placeholder="2015...">
             </div>
         </div>
         <div class="col-md-4">
@@ -125,6 +133,20 @@
                     <option value="4" {{ @$product->gears == 4 ? 'selected' : '' }}>4</option>
                     <option value="5" {{ @$product->gears == 5 ? 'selected' : '' }}>5</option>
                     <option value="6" {{ @$product->gears == 6 ? 'selected' : '' }}>6</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="select_gears" class="form-group" style="display: none">
+                <label for="gears">Gears <span class="red_star">*</span></label>
+                <select class="form-control" name="gears" id="gears">
+                    <option value="">--Select--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
                 </select>
             </div>
         </div>

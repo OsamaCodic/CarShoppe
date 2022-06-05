@@ -8,14 +8,25 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($features_list as $feature)  
+
+                <style>
+                    input:checked + .slider { background-color: {{$toggleColor}}; }
+                </style>
+
+                @foreach ($features_list as $feature) 
+                
                     <tr>
                         <td>
                             {{$feature->title}}
                         </td>
                         <td>
                             <label class="switch">
-                                <input class="toggle-class" type="checkbox" id="" name="feature[]" value="{{$feature->id}}" >
+                                <input class="toggle-class" type="checkbox" 
+                                name="feature[]"
+                                value="{{$feature->id}}"
+                                
+                                {{@$product->productFeatures->contains('feature_id', $feature->id) ? 'checked' : '' }}
+                                >
                                 <span class="slider round"></span>
                             </label>
                         </td>
@@ -25,7 +36,9 @@
         </table>
     </div>
     
-    <input type="hidden" name="product_id" value="{{$product->id}}">
+    <input type="hidden" name="product_id" value="{{@$product->id}}">
+    <input type="hidden" name="product_features" value="{{@$product->productFeatures}}">
+    
 
     <div class="row m-3">
         <div class="col-md-1"></div>

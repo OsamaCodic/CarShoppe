@@ -43,27 +43,108 @@
                     <div class="advance-search">
                         <form action="{{url('front/advance_search_product')}}" method="get">
                             <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control my-2 my-lg-0" id="inputtext4"
-                                        placeholder="What brand you looking for">
+                                <div class="form-group col-md-3">
+                                    <select name="brand_id" class="w-100 form-control">
+                                        <option>Brand</option>
+                                        @foreach ($brands as $brand)
+                                        <option value="{{$brand->id}}">{{$brand->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <select name="brand_id" class="w-100 form-control">
+                                        <option>Which body you'r looking for?</option>
+                                        @foreach ($types as $type)
+                                        <option value="{{$type->id}}">{{$type->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group col-md-2">
+                                    <select class="w-100 form-control" name="engine_cc" id="engine_cc">
+                                        <option value="">Search by Engine</option>
+                                        <option value="660">660 cc</option>
+                                        <option value="800">800 cc</option>
+                                        <option value="1000">1000 cc</option>
+                                        <option value="1300">1300 cc</option>
+                                        <option value="1500">1500 cc</option>
+                                        <option value="1800">1800 cc</option>
+                                        <option value="2000">2000 cc</option>
+                                        <option value="2500">2500 cc</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group col-md-2">
+                                    <select class="w-100 form-control" name="engine_cc" id="engine_cc">
+                                        <option value="">Search by price</option>
+                                        <option value="100000">1 lac</option>
+                                        <option value="500000">5 lac</option>
+                                        <option value="10000000">10 lac</option>
+                                        <option value="150000">15 lac</option>
+                                        <option value="2000000">20 lac</option>
+                                        <option value="2500000">25 lac</option>
+                                        <option value="3000000">30 lac</option>
+                                        <option value="3500000">35 lac</option>
+                                        <option value="4000000">40 lac</option>
+                                        <option value="5000000">50 lac</option> 
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group col-md-2">
+                                    <select class="w-100 form-control" name="engine_cc" id="engine_cc">
+                                        <option value="">Search by doors</option>
+                                        <option value="2">2 Doors</option>
+                                        <option value="4">4 Doors</option>
+                                    </select>
+                                </div>
 
-                                        {{-- <select name="brand_id" class="w-100 form-control mt-lg-1 mt-md-2">
-                                            <option>Brand</option>
-                                            @foreach ($brands as $brand)
-                                            <option value="{{$brand->id}}">{{$brand->title}}</option>
-                                            @endforeach
-                                        </select> --}}
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <input type="text" class="form-control my-2 my-lg-0" id="inputCategory4"
-                                        placeholder="which category you want">
-                                </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-3 mt-2">
                                     <input type="text" class="form-control my-2 my-lg-0" id="inputLocation4"
                                         placeholder="Search product">
                                 </div>
-                                <div class="form-group col-md-2">
-                                    <button type="submit" class="btn btn-primary">Search Now</button>
+                                <div class="form-group col-md-3 mt-2">
+                                    <input type="number" min="1885" max="2022" class="form-control my-2 my-lg-0" id="inputLocation4"
+                                        placeholder="Search by model year">
+                                </div>
+
+                                <div class="col-md-6 mt-2" id="selected_transmission">
+                                    <div class="form-group">
+                                        <select class="form-control" name="transmission" id="transmission">
+                                            <option value="">--Select--</option>
+                                            <option value="Automatic" {{ @$product->transmission == 'Automatic' ? 'selected' : '' }}>Automatic</option>
+                                            <option value="Mannual" {{ @$product->transmission == 'Mannual' ? 'selected' : '' }}>Mannual</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mt-2">
+                                    <div id="select_gears" class="form-group" style="display: none">
+                                        <select class="form-control" name="gears" id="gears">
+                                            <option value="">--Select--</option>
+                                            <option value="1" {{ @$product->gears == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ @$product->gears == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ @$product->gears == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ @$product->gears == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ @$product->gears == 5 ? 'selected' : '' }}>5</option>
+                                            <option value="6" {{ @$product->gears == 6 ? 'selected' : '' }}>6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mt-2">
+                                    <div id="select_gears" class="form-group" style="display: none">
+                                        <select class="form-control" name="gears" id="gears">
+                                            <option value="">--Select--</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group col-md-12 mt-2">
+                                    <button type="submit" class="btn btn-outline-info btn-block">Search Now <i class="fa fa-search" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -227,7 +308,10 @@
                 </div>
             </div>
         </div>
+        
     </section>
+
+    
 
     @include('frontend_layout.footer')
 
@@ -248,6 +332,9 @@
     </script>
     <script src="{{ asset('frontend-layout') }}/plugins/google-map/gmap.js"></script>
     <script src="{{ asset('frontend-layout') }}/js/script.js"></script>
+
+    @include('frontend_layout.partials.frontend_js')
+
 </body>
 
 </html>

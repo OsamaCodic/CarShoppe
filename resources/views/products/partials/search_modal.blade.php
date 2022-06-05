@@ -34,7 +34,7 @@
             
             <div class="form-row mt-2">
               <div class="col">
-                <input type="number" name="model" class="form-control" minlength="4" placeholder="Search by Model year">
+                <input type="number" min="1885" max="2022" name="model" class="form-control" minlength="4" placeholder="Search by Model year">
               </div>
               <div class="col">
                 <input type="text" name="colours" class="form-control" placeholder="Search by Colour">

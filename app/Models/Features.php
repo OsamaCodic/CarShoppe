@@ -10,7 +10,7 @@ class Features extends Model
     use HasFactory;
     protected $table = 'features';
 
-    public function features()
+    public function featureProduct()
     {
         return $this->hasOne('App\Models\ProductFeature', 'feature_id');
     }
