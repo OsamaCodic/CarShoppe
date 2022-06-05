@@ -315,6 +315,7 @@ class ProductController extends Controller
         foreach ($request->delete_rows_arr as $del_row_id)
         {
             Product::find($del_row_id)->delete();
+            ProductFeature::where('product_id', $del_row_id)->delete();
         }
     }
 }
