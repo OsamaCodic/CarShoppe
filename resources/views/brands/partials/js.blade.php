@@ -43,6 +43,9 @@
                         maxlength: 15,
                     },
                     
+                    rate: {
+                        required: true,
+                    },
                     display_order: {
                         required: true,
                     },
@@ -52,8 +55,8 @@
                     title: {
                         required: "Brand must have title!",
                     },
-                    last_name: {
-                        display_order: "Order is required!",
+                    rate: {
+                        required: "At least 1 star should be apply!",
                     }
                 },
 

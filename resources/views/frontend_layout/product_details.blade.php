@@ -126,7 +126,7 @@
                                                 <td>transmission</td><td>{{$product->transmission}}</td>
                                             </tr>
 
-                                            @if ($product->gears != null)
+                                            @if ($product->transmission == "Mannual")
                                                 <tr>
                                                     <td>Gears</td>
                                                         <td>

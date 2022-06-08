@@ -53,17 +53,22 @@ class ProductController extends Controller
 
         if (@$_GET['gears'] && @$_GET['gears'] !="")
         {
-            $query->orwhere('gears',$_GET['gears']);
+            $query->where('gears',$_GET['gears']);
         }
         
         if (@$_GET['colours'] && @$_GET['colours'] !="")
         {
-            $query->orwhere('colours',$_GET['colours']);
+            $query->where('colours',$_GET['colours']);
         }
         
         if (@$_GET['model'] && @$_GET['model'] !="")
         {
-            $query->orwhere('colours',$_GET['colours']);
+            $query->where('colours',$_GET['colours']);
+        }
+
+        if (@$_GET['no_of_doors'] && @$_GET['no_of_doors'] !="")
+        {
+            $query->where('no_of_doors',$_GET['no_of_doors']);
         }
         
         if (@$_GET['sortbyName'] && @$_GET['sortbyName'] !="")

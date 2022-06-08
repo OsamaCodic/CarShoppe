@@ -45,15 +45,15 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <select name="brand_id" class="w-100 form-control">
-                                        <option>Brand</option>
+                                        <option value="">Brand</option>
                                         @foreach ($brands as $brand)
                                         <option value="{{$brand->id}}">{{$brand->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <select name="brand_id" class="w-100 form-control">
-                                        <option>Which body you'r looking for?</option>
+                                    <select name="type_id" class="w-100 form-control">
+                                        <option value="">Which body you'r looking for?</option>
                                         @foreach ($types as $type)
                                         <option value="{{$type->id}}">{{$type->title}}</option>
                                         @endforeach
@@ -75,23 +75,23 @@
                                 </div>
                                 
                                 <div class="form-group col-md-2">
-                                    <select class="w-100 form-control" name="engine_cc" id="engine_cc">
+                                    <select class="w-100 form-control" name="less_than_price" id="less_than_price">
                                         <option value="">Search by price</option>
-                                        <option value="100000">1 lac</option>
-                                        <option value="500000">5 lac</option>
-                                        <option value="10000000">10 lac</option>
-                                        <option value="150000">15 lac</option>
-                                        <option value="2000000">20 lac</option>
-                                        <option value="2500000">25 lac</option>
-                                        <option value="3000000">30 lac</option>
-                                        <option value="3500000">35 lac</option>
-                                        <option value="4000000">40 lac</option>
-                                        <option value="5000000">50 lac</option> 
+                                        <option value="100000">less than 1 lac</option>
+                                        <option value="500000">less than 5 lac</option>
+                                        <option value="10000000">less than 10 lac</option>
+                                        <option value="150000">less than 15 lac</option>
+                                        <option value="2000000">less than 20 lac</option>
+                                        <option value="2500000">less than 25 lac</option>
+                                        <option value="3000000">less than 30 lac</option>
+                                        <option value="3500000">less than 35 lac</option>
+                                        <option value="4000000">less than 40 lac</option>
+                                        <option value="5000000">less than 50 lac</option> 
                                     </select>
                                 </div>
                                 
                                 <div class="form-group col-md-2">
-                                    <select class="w-100 form-control" name="engine_cc" id="engine_cc">
+                                    <select class="w-100 form-control" name="no_of_doors" id="no_of_doors">
                                         <option value="">Search by doors</option>
                                         <option value="2">2 Doors</option>
                                         <option value="4">4 Doors</option>
@@ -99,11 +99,11 @@
                                 </div>
 
                                 <div class="form-group col-md-3 mt-2">
-                                    <input type="text" class="form-control my-2 my-lg-0" id="inputLocation4"
+                                    <input type="text" name="name" class="form-control my-2 my-lg-0" id="inputLocation4"
                                         placeholder="Search product">
                                 </div>
                                 <div class="form-group col-md-3 mt-2">
-                                    <input type="number" min="1885" max="2022" class="form-control my-2 my-lg-0" id="inputLocation4"
+                                    <input type="number" min="1885" max="2022" name="model" class="form-control my-2 my-lg-0" id="inputLocation4"
                                         placeholder="Search by model year">
                                 </div>
 
@@ -162,34 +162,44 @@
                             <h4 class="widget-header">All Brands</h4>
                             <ul class="category-list">
                               @foreach ($brands as $brand)  
-                                <li><a href="#">{{$brand->title}}<span>{{$brand->products->count()}}</span></a></li>
+                                <li><a href="{{url('front/products?brand_id='.$brand->id)}}">{{$brand->title}}<span>{{$brand->products->count()}}</span></a></li>
                               @endforeach
                             </ul>
                         </div>
 
                         <div class="widget category-list">
-                            <h4 class="widget-header">Nearby</h4>
+                            <h4 class="widget-header">All Types</h4>
                             <ul class="category-list">
-                                <li><a href="category.html">New York <span>93</span></a></li>
-                                <li><a href="category.html">New Jersy <span>233</span></a></li>
-                                <li><a href="category.html">Florida <span>183</span></a></li>
-                                <li><a href="category.html">California <span>120</span></a></li>
-                                <li><a href="category.html">Texas <span>40</span></a></li>
-                                <li><a href="category.html">Alaska <span>81</span></a></li>
+                              @foreach ($types as $type)  
+                                <li><a href="{{url('front/products?type_id='.$type->id)}}">{{$type->title}}<span>{{$type->products->count()}}</span></a></li>
+                              @endforeach
                             </ul>
+                        </div>
+
+                        <div class="widget product-shorting">
+                            <h4 class="widget-header">By Condition</h4>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <a href="{{url('front/products?status=1')}}">New car</a>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <a href="{{url('front/products?status=2')}}">Used Car</a>
+                                </label>
+                            </div>
                         </div>
 
                         <div class="widget filter">
                             <h4 class="widget-header">Show Produts</h4>
-                            <select>
-                                <option>Popularity</option>
-                                <option value="1">Top rated</option>
-                                <option value="2">Lowest Price</option>
-                                <option value="4">Highest Price</option>
+                            <select name="searchbyBrandRatted" id="searchbyTransmission">
+                                <option>Transmission</option>
+                                <option value="Automatic">Automatic</option>
+                                <option value="Mannual">Mannual</option>
                             </select>
                         </div>
 
-                        <div class="widget price-range w-100">
+                        {{-- <div class="widget price-range w-100">
                             <h4 class="widget-header">Price Range</h4>
                             <div class="block">
                                 <input class="range-track w-100" type="text" data-slider-min="0" data-slider-max="5000"
@@ -198,36 +208,7 @@
                                     <span class="value">$10 - $5000</span>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="widget product-shorting">
-                            <h4 class="widget-header">By Condition</h4>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    Brand New
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    Almost New
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    Gently New
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    Havely New
-                                </label>
-                            </div>
-                        </div>
-
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8">
@@ -235,10 +216,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <strong>Short</strong>
-                                <select>
-                                    <option>Most Recent</option>
-                                    <option value="1">Most Popular</option>
-                                    <option value="2">Lowest Price</option>
+                                <select id="shortbyFilter" name="shortbyFilter">
+                                    <option value="">Most Recent</option>
+                                    <option value="1">Oldest Models</option>
+                                    <option value="2">Latest Models</option>
+                                    <option value="3">Lowest Price</option>
                                     <option value="4">Highest Price</option>
                                 </select>
                             </div>

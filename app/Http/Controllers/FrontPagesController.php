@@ -122,22 +122,67 @@ class FrontPagesController extends Controller
         
         if (@$_GET['status'] && @$_GET['status'] !="")
         {
-            $query->orwhere('status',$_GET['status']);
+            $query->where('status',$_GET['status']);
         }
         
         if (@$_GET['brand_id'] && @$_GET['brand_id'] !="")
         {
-            $query->orwhere('brand_id',$_GET['brand_id']);
+            $query->where('brand_id',$_GET['brand_id']);
         }
 
         if (@$_GET['type_id'] && @$_GET['type_id'] !="")
         {
-            $query->orwhere('type_id',$_GET['type_id']);
+            $query->where('type_id',$_GET['type_id']);
         }
         
         if (@$_GET['name'] && @$_GET['name'] !="" && !empty(@$_GET['name']))
         {
-            $query->orwhere('name','LIKE','%'.$_GET['name'].'%');
+            $query->where('name','LIKE','%'.$_GET['name'].'%');
+        }
+
+        if (@$_GET['engine_cc'] && @$_GET['engine_cc'] !="")
+        {
+            $query->where('type_id',$_GET['type_id']);
+        }
+
+        if (@$_GET['transmission'] && @$_GET['transmission'] !="")
+        {
+            $query->where('transmission',$_GET['transmission']);
+        }
+
+        if (@$_GET['gears'] && @$_GET['gears'] !="")
+        {
+            $query->where('gears',$_GET['gears']);
+        }
+        
+        if (@$_GET['no_of_doors'] && @$_GET['no_of_doors'] !="")
+        {
+            $query->where('no_of_doors',$_GET['no_of_doors']);
+        }
+        
+        if (@$_GET['model'] && @$_GET['model'] !="")
+        {
+            $query->where('model',$_GET['model']);
+        }
+        
+        if (@$_GET['less_than_price'] && @$_GET['less_than_price'] !="")
+        {
+            $query->where('price', '<' , $_GET['less_than_price']);
+        }
+
+        if (@$_GET['low_price'] && @$_GET['high_price'] && @$_GET['low_price'] !="" && @$_GET['high_price'] !="")
+        {
+            $query->orWhereBetween('price', [$_GET['low_price'], $_GET['high_price']]);
+        }
+
+        if (@$_GET['sortByModel'] && @$_GET['sortByModel'] !="")
+        {
+          $query->orderBy('model', @$_GET['sortByModel']);
+        }
+        
+        if (@$_GET['sortByprice'] && @$_GET['sortByprice'] !="")
+        {
+            $query->orderBy('price', @$_GET['sortByprice']);
         }
 
         $brands = Brand::where('is_vehicle', true)->orderBy('display_order')->take(5)->get();
