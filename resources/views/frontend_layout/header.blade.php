@@ -39,7 +39,7 @@
                             </a>
                             <!-- Dropdown list -->
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Parts Store</a>
+                                <a class="dropdown-item" href="{{url('front/parts')}}">Parts Store</a>
                                 <a class="dropdown-item" href="#">Blog</a>
 
                             </div>

@@ -7,10 +7,13 @@ use App\Models\User;
 use App\Models\UserDetail;
 use App\Models\Type;
 use App\Models\Brand;
-use App\Models\Product;
+use App\Models\{Product, Accessory, PurchasedPartHistory, PurchasedProductHistory};
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\userRegistedMail;
+use App\Mail\purchasedMail;
+
+use Auth;
 
 class FrontPagesController extends Controller
 {
@@ -48,6 +51,9 @@ class FrontPagesController extends Controller
                 return \Redirect::back()->withErrors(['msg' => 'Sorry, Wrong password!']);
             }
             else{
+
+                \Auth::login($user);
+
                 return redirect('front/home')->withToastSuccess('Task Created Successfully!');
 
             }
@@ -191,10 +197,42 @@ class FrontPagesController extends Controller
 
         $products = $query->orderBy('display_order')->paginate(5);
 
-        return view('frontend_layout.list', compact(
+        return view('frontend_layout.list'  , compact(
             'products',
             'brands',
             'types'
+        ));
+    
+    }
+    public function partslistPage() {
+
+        $query = Accessory::query();
+
+        if (@$_GET['brand_id'] && @$_GET['brand_id'] !="")
+        {
+            $query->where('brand_id',$_GET['brand_id']);
+        }
+
+        if (@$_GET['category_id'] && @$_GET['category_id'] !="")
+        {
+            $query->where('category_id',$_GET['category_id']);
+        }
+
+        if (@$_GET['titile'] && @$_GET['titile'] !="")
+        {
+            $query->where('titile',$_GET['titile']);
+        }
+
+        $brands = Brand::where('is_vehicle', false)->orderBy('display_order')->take(5)->get();
+        $categories = Type::where('is_vehicle', false)->orderBy('display_order')->get();
+        // $products = Product::where('status', @$_GET['status'])->orderBy('display_order')->paginate(5);
+
+        $accessories = $query->orderBy('display_order')->paginate(5);
+
+        return view('frontend_layout.parts_list', compact(
+            'accessories',
+            'brands',
+            'categories'
         ));
     
     }
@@ -207,6 +245,78 @@ class FrontPagesController extends Controller
         
         return view('frontend_layout.product_details', compact('product'));
     
+    }
+    
+    public function accessoryDetails($id) {
+        
+        $accessory = Accessory::get()->where('id', $id)->first(); 
+        return view('frontend_layout.part_details', compact('accessory'));
+    
+    }
+    
+    public function purchase_part($id) {
+        
+        $accessory = Accessory::get()->where('id', $id)->first();
+        $accessory->purchased = true;
+        $accessory->save();
+
+        $loggedUser = Auth::user();
+        
+
+        return view('frontend_layout.buyer_form', compact('accessory', 'loggedUser'));
+    
+    }
+    
+    public function purchase_product($id) {
+
+        $product = Product::get()->where('id', $id)->first();
+        $product->purchased = true;
+        $product->save();
+
+        $loggedUser = Auth::user();
+        
+        return view('frontend_layout.product_buyer_form', compact('product', 'loggedUser'));    
+    }
+
+    public function part_buyer_details(Request $request) {
+        
+        $validatedData = $request->validate([
+            'phone_number' => ['required'],
+            'country' => ['required'],
+            'city' => ['required'],
+            'address' => ['required'],
+        ]);
+
+        PurchasedPartHistory::create($request->only('user_id', 'part_id')); 
+        UserDetail::create($request->except('_Token'));
+
+        $data = array(
+            'fname'      =>  $request->first_name,
+            'lname'   =>   $request->last_name
+        );
+
+        \Mail::to($request->email)->send(new purchasedMail($data));
+        return redirect('front/parts')->with('success', 'Thank you for purchasing1!');
+    }
+    public function product_buyer_details(Request $request) {
+        
+        $validatedData = $request->validate([
+            'phone_number' => ['required'],
+            'country' => ['required'],
+            'city' => ['required'],
+            'address' => ['required'],
+        ]);
+
+        PurchasedProductHistory::create($request->only('user_id', 'product_id')); 
+        UserDetail::create($request->except('_Token'));
+
+        $data = array(
+            'fname'      =>  $request->first_name,
+            'lname'   =>   $request->last_name
+        );
+
+        \Mail::to($request->email)->send(new purchasedMail($data));
+        return redirect('front/products')->with('success', 'Thank you for purchasing1!');
     }
     
     public function sell_product() {

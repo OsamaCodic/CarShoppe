@@ -38,4 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function part_history()
+    {
+        return $this->hasOne('App\Models\PurchasedPartHistory', 'part_id');
+    }
 }

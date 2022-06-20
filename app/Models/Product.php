@@ -16,6 +16,11 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\brand');
     }
+
+    public function product_history()
+    {
+        return $this->hasOne('App\Models\PurchasedProductHistory', 'product_id');
+    }
     
     public function type()
     {

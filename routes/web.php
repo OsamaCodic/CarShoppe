@@ -66,6 +66,11 @@ Route::group(
                 Route::GET('/types_live_search', 'TypeController@type_table_data');
             // End Types routes
                 
+            
+            Route::get('/history', 'HistoryController@index');
+        Route::get('/history/partsHistory', 'HistoryController@partsHistory');
+            Route::get('/history/productsHistory', 'HistoryController@productsHistory');
+            
             //Start E-Store
                 Route::resource('/accessory_brands', AccessoryBrandController::class);
                 Route::GET('/accessory_brands_live_search', 'AccessoryBrandController@accessory_brand_table_data');
@@ -91,7 +96,15 @@ Route::group(
             Route::get('home', 'FrontPagesController@home');
             Route::get('products', 'FrontPagesController@listPage');
             Route::get('product/{product_id}/details', 'FrontPagesController@productDetails');
+            Route::get('accessory/{accessory_id}/details', 'FrontPagesController@accessoryDetails');
             
+            //Store
+            Route::get('parts', 'FrontPagesController@partslistPage');
+            Route::get('accessory/purchased_process/{id}', 'FrontPagesController@purchase_part');
+            Route::get('product/purchased_process/{id}', 'FrontPagesController@purchase_product');
+            Route::POST('store_part_buyer_details', 'FrontPagesController@part_buyer_details');
+            Route::POST('store_product_buyer_details', 'FrontPagesController@product_buyer_details');
+
             Route::get('/advance_search_product', 'FrontPagesController@listPage');
 
             Route::get('used_cars', 'FrontPagesController@usedCars');

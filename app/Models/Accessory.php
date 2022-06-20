@@ -21,5 +21,10 @@ class Accessory extends Model
     {
         return $this->belongsTo('App\Models\Type', 'category_id');
     }
+    
+    public function part_history()
+    {
+        return $this->hasOne('App\Models\PurchasedPartHistory', 'part_id');
+    }
 
 }

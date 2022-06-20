@@ -50,6 +50,7 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>FrontEnd</span></a>
             </li>
+
             <!-- Heading -->
             <div class="sidebar-heading">
                 Pages
@@ -130,6 +131,14 @@
                     </div>
                 </div>
             </li>
+
+ 
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/admin/history')}}">
+                    <i class="fas fa-clock"></i>
+                    <span>Purchased History</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
