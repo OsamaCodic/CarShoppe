@@ -68,6 +68,9 @@ Route::group(
                 
             
             Route::get('/history', 'HistoryController@index');
+            Route::get('/history/parts/clearHistory', 'HistoryController@clearPartsHistory');
+            Route::get('/history/products/clearHistory', 'HistoryController@clearProductHistory');
+            
         Route::get('/history/partsHistory', 'HistoryController@partsHistory');
             Route::get('/history/productsHistory', 'HistoryController@productsHistory');
             

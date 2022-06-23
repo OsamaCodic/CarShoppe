@@ -5,6 +5,11 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+  <!-- FAVICON -->
+  <link href="{{asset('frontend-layout')}}/images/car-logo.png" rel="shortcut icon">
+  
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">

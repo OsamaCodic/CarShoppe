@@ -19,9 +19,11 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-7">
-                        {{-- <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$products->count()}})</small></h6> --}}
+                        <h6 class="m-0 font-weight-bold text-primary">Records <small>({{$parts_ids->count()}})</small></h6>
                     </div>
-                    
+                    <div class="col-md-5">
+                        <a href="{{url('admin/history')}}" class="btn btn-info float-right">Back</a>
+                    </div>
                 </div>
             </div>
 
@@ -53,7 +55,7 @@
                         <div class="row m-2">
                             <div class="col-md-10"></div>
                             <div class="col-md-2">
-                                <a href="#" type="button" id="del_rows_btn" class="zoomBtn btn btn-danger btn-xs mt-2 btn-block" style="font-size: 8px; display:none;">Delete</a>
+                                <button onclick="clearHistory()" type="button" id="del_rows_btn" class="zoomBtn btn btn-danger btn-xs mt-2 btn-block" style="font-size: 15px;">Clear history</button>
                             </div>
                         </div>
                     </div>
@@ -65,5 +67,47 @@
 @endsection
 
 @section('javascript')
-    @include('products.partials.js')
+    <script>
+        function clearHistory()
+        {
+        
+            var url = "{{ url('admin/history/parts/clearHistory') }}";
+        
+            swal({
+                    title: "Do you want to empty it?",
+                    text: "Clear",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: dltUrl,
+                        type: "DELETE",
+                        data:{
+                            _token:'{{ csrf_token() }}',
+                            id:'id'
+                        }           
+                    })
+                    .done(function(response) {
+                        swal({
+                            title: "History deleted!",
+                            text: "History deleted permanently",
+                            icon: "success",
+                            timer: 5000,
+                            buttons: false,
+                            dangerMode: true,
+                        })
+                        setTimeout(function(){
+                            location.reload();
+                        }, 1000);
+                    })
+                }
+                else {
+                    swal("Cancelled", "Your history is safe :)", "error");
+                }
+            });
+        }
+    </script>
 @endsection

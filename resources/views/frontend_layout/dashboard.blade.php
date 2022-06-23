@@ -9,7 +9,11 @@
   <title>Home</title>
   
   <!-- FAVICON -->
-  <link href="{{asset('frontend-layout')}}/img/favicon.png" rel="shortcut icon">
+  <link href="{{asset('frontend-layout')}}/images/car-logo.png" rel="shortcut icon">
+
+  {{-- <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}"> --}}
+
   <!-- PLUGINS CSS STYLE -->
   <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
   <!-- Bootstrap -->

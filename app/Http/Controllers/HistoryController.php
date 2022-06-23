@@ -38,4 +38,12 @@ class HistoryController extends Controller
         $products_ids = PurchasedProductHistory::get();
         return view('history.products_index', compact('products_ids'));
     }
+    
+    public function clearPartsHistory()
+    {
+        PurchasedPartsHistory::delete();
+        $parts_ids = PurchasedPartsHistory::get();
+
+        return view('history.products_index', compact('products_ids'));
+    }
 }
